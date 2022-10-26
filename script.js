@@ -44,7 +44,12 @@ async function searchByName(wantedName) {
     if (matching_ids.length === 1) {
         // Gets the game id
         const gameId = matching_ids[0]
-        const data = await getGameData(gameId);
+        const data = await getGameData(gameId)
+        if (!data.success) {
+            // There was an error getting this app from api
+            displayError('Error getting app data')
+            return
+        }
         displayGameData(data, gameId);
     } else {
         // Handle when there's multiple matches.
@@ -66,6 +71,11 @@ async function searchById(queryId) {
         return;
     }
     const gameData = await getGameData(queryId);
+    if (!gameData.success) {
+        // There was an error getting this app from api
+        displayError('Error getting app data')
+        return
+    }
     displayGameData(gameData, queryId);
 
 }

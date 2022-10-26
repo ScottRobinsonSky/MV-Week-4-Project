@@ -6,8 +6,8 @@ submitBtn.addEventListener("click", processSearchQuery);
 
 
 function processSearchQuery(e) {
-  // to prevent page from refreshing when input submitted
-    e.preventDefault();
+    e.preventDefault(); // to prevent page from refreshing when input submitted
+
     query = input.value.trim();
     if (!query) return;
 

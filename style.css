@@ -1,1 +1,85 @@
 /* TODO: Add styling for p.error */
+/* || COLOUR SCHEME */
+/* || COLOUR SCHEME {
+  BLACK: #090E1D; 
+  DARK GREY: #373747
+  NAVY BLUE: #1D2C4E 
+  LIGHT BLUE: #3396BA
+  GREEN: #60C137
+  LIGHT GREY: #B4BAC4
+  WHITE: #E3EBEE
+} */
+
+/* || FONTS */
+html {
+  text-align: center;
+  font-size: calc(16px + 0.390625vw);
+}
+
+/* || PRIMARY ELEMENT */
+
+/* || SECONDARY ELEMENT */
+h1 {
+  text-align: center;
+}
+
+/* || CLASS */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.flex-column {
+  flex-direction: column;
+}
+
+/* || GRIDS*/
+
+/* || FEATURED GAMES GRID */
+/* || CONTAINER */
+#featured-games-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto 1fr 1fr;
+  grid-auto-flow: row dense;
+}
+/* || ELEMENTS */
+#feat-game-head {
+  grid-column: 1 / 6;
+  grid-row: 1 / 2;
+}
+.featured-game {
+}
+
+/* || GAME DATA GRID */
+/* || CONTAINER */
+#game-data-container {
+  display: grid;
+  grid-template-areas: 
+  "g g a a a a"
+  "d d c r r r";
+}
+/* || ELEMENTS */
+#data-general{
+grid-area: g;
+}
+#data-requirements{
+grid-area: r;
+}
+#data-art{
+grid-area: a;
+}
+#data-description{
+grid-area: d;
+}
+#data-critic{
+grid-area: c;
+}
+
+
+/* || MOBILE */
+
+/* || TABLET */
+
+/* || DESKTOP */

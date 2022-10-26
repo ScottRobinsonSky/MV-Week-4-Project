@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Steam API Search</title>
-</head>
-<body>
-    <label for="steamSearchQuery"></label>
-    <input type="text" name="steamSearchQuery" id="steamSearchQuery">
-    <button type="submit" id="submitSearchQuery">Search</button>
-</body>
+  </head>
+  <body>
+    <header>
+      <h1>Steam Search</h1>
+    </header>
+    <main>
+      <section id="on-load" class="flex-center flex-column">
+        <form action="" class="">
+          <label for="steamSearchQuery"></label>
+          <input
+            type="text"
+            name="steamSearchQuery"
+            id="steamSearchQuery"
+            placeholder="Enter game title"
+          />
+          <button type="submit" id="submitSearchQuery">Search</button>
+        </form>
+        <div id="error-container"></div>
+        <section id="featured-games-container">
+          <h2 id="feat-game-head">Featured Games</h2>
+        </section>
+      </section>
+      <section id="info-display" class="hidden">
+        <article id="game-data-container">
+          <article id="data-general"></article>
+          <figure id="data-requirements"></figure>
+          <!-- #data-art -->
+          <!-- #data-description -->
+          <!-- #data-critic -->
+        </article>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
 </html>

@@ -1,1 +1,136 @@
 /* TODO: Add styling for p.error */
+
+/* || COLOUR SCHEME {
+  BLACK: #090E1D; 
+  DARK GREY: #373747
+  NAVY BLUE: #1D2C4E 
+  LIGHT BLUE: #3396BA
+  GREEN: #60C137
+  LIGHT GREY: #B4BAC4
+  WHITE: #E3EBEE
+} */
+
+/* || FONTS */
+@import url("https://fonts.googleapis.com/css?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Unica+One&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+:root{
+  --black: #090E1D;
+  --dark-grey: #373747;
+  --navy-blue: #1D2C4E;
+  --light-blue: #3396BA;
+  --green: #60C137;
+  --light-grey: #B4BAC4;
+  --white: #E3EBEE;
+}
+html {
+  text-align: center;
+  font-size: calc(16px + 0.390625vw);
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+/* || PRIMARY ELEMENT */
+body{
+  background-color: var(--navy-blue);
+  display: flex;
+  flex-flow: column wrap;
+  margin: 3%;
+  
+}
+header{
+  background-color: var(--light-grey);
+  border-radius: 5px 5px 0 0;
+
+}
+main{
+background-color: var(--light-grey);
+}
+footer{
+background-color: var(--light-grey);
+border-radius: 0 0 5px 5px;
+}
+/* || SECONDARY ELEMENT */
+h1 {
+  font-family: "Audiowide", Impact, Times, serif;
+}
+h2{
+  font-family: "Unica One", system-ui, Times, serif;
+
+}
+h3{
+  font-family: "Unica One", system-ui, Times, serif;
+}
+p{
+
+}
+form{
+
+}
+
+/* || CLASS */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.flex-column {
+  flex-direction: column;
+}
+.form-item{
+  margin: 1% auto;
+}
+.hidden{
+  display: none;
+}
+
+/* || GRIDS*/
+
+/* || FEATURED GAMES GRID */
+/* || CONTAINER */
+#featured-games-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto 1fr 1fr;
+  grid-auto-flow: row dense;
+}
+/* || ELEMENTS */
+#feat-game-head {
+  grid-column: 1 / 6;
+  grid-row: 1 / 2;
+}
+.featured-game {
+}
+
+/* || GAME DATA GRID */
+/* || CONTAINER */
+#game-data-container {
+  display: grid;
+  grid-template-areas: 
+  "g g a a a a"
+  "d d c r r r";
+}
+/* || ELEMENTS */
+#data-general{
+  grid-area: g;
+}
+#data-requirements{
+  grid-area: r;
+}
+#data-art{
+  grid-area: a;
+}
+#data-description{
+  grid-area: d;
+}
+#data-critic{
+  grid-area: c;
+}
+
+
+/* || MOBILE */
+
+/* || TABLET */
+
+/* || DESKTOP */

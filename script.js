@@ -6,7 +6,9 @@ const currencySelect = document.querySelector('#steamCurrencySelect')
 submitBtn.addEventListener("click", processSearchQuery);
 
 
-function processSearchQuery() {
+function processSearchQuery(e) {
+    e.preventDefault(); // to prevent page from refreshing when input submitted
+
     query = input.value.trim();
     if (!query) return;
 

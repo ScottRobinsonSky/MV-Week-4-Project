@@ -11,16 +11,52 @@
 } */
 
 /* || FONTS */
+@import url("https://fonts.googleapis.com/css?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Unica+One&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
 html {
   text-align: center;
   font-size: calc(16px + 0.390625vw);
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 /* || PRIMARY ELEMENT */
+body{
+  background-color: #090E1D;
+  display: flex;
+  flex-flow: column wrap;
+  margin: 3%;
+  
+}
+header{
+  background-color: #B4BAC4;
+  border-radius: 5px 5px 0 0;
 
+}
+main{
+background-color: #B4BAC4;
+}
+footer{
+background-color: #B4BAC4;
+border-radius: 0 0 5px 5px;
+}
 /* || SECONDARY ELEMENT */
 h1 {
-  text-align: center;
+  font-family: "Audiowide", Impact, Times, serif;
+}
+h2{
+  font-family: "Unica One", system-ui, Times, serif;
+
+}
+h3{
+  font-family: "Unica One", system-ui, Times, serif;
+}
+p{
+
+}
+form{
+
 }
 
 /* || CLASS */
@@ -32,6 +68,9 @@ h1 {
 }
 .flex-column {
   flex-direction: column;
+}
+.form-item{
+  margin: 1% auto;
 }
 
 /* || GRIDS*/

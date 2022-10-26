@@ -81,6 +81,9 @@ form{
 .form-item{
   margin: 1% auto;
 }
+.hidden{
+  display: none;
+}
 
 /* || GRIDS*/
 

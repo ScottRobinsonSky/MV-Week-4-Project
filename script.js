@@ -5,7 +5,8 @@ const submitBtn = document.getElementById("submitSearchQuery");
 submitBtn.addEventListener("click", processSearchQuery);
 
 
-function processSearchQuery() {
+function processSearchQuery(e) {
+    e.preventDefault();
     query = input.value.trim();
     if (!query) return;
 

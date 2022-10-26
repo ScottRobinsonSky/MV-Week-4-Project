@@ -14,7 +14,6 @@ function processSearchQuery() {
         // This feature isn't yet supported, so for now we just return.
         return;
     }
-    console.log("searching");
 
     data = searchByName(query.toLowerCase());
 
@@ -25,7 +24,6 @@ async function searchByName(wantedName) {
     const data = await response.json();
     
     const matching_ids = [];
-    console.log(Object.values(data.applist.apps));
     Object.values(data.applist.apps).forEach((obj) => {
         const id = obj.appid;
         const name = obj.name;
@@ -34,7 +32,6 @@ async function searchByName(wantedName) {
             matching_ids.push(id);
         }
     });
-    console.log(matching_ids);
     if (matching_ids.length === 0) {
         displayError("Couldn't find a game with that name");
         return;

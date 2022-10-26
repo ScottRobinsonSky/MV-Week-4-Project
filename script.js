@@ -14,7 +14,7 @@ function processSearchQuery(e) {
 
     if (!isNaN(+query)) {
         // `query` is a valid number, which we take to mean user is trying to search by id.
-        // This feature isn't yet supported, so for now we just return.
+        searchById(query)
         return;
     }
 
@@ -25,7 +25,7 @@ function processSearchQuery(e) {
 async function searchByName(wantedName) {
     const response = await fetch("http://localhost:8080/http://api.steampowered.com/ISteamApps/GetAppList/v0002/");
     const data = await response.json();
-    
+
     const matching_ids = [];
     Object.values(data.applist.apps).forEach((obj) => {
         const id = obj.appid;
@@ -54,6 +54,20 @@ async function searchByName(wantedName) {
         // since names will likely be the same (i.e. the image will help users to distinguish between options)
         return; // TODO: handling multiple matches will be added in future
     }
+}
+
+async function searchById(queryId) {
+    const response = await fetch("http://localhost:8080/http://api.steampowered.com/ISteamApps/GetAppList/v0002/");
+    const data = await response.json();
+    const matchingApp = data.applist.apps.find(item => item.appid.toString() === queryId)
+    if (matchingApp === undefined) {
+        // There is an error: no apps match this app id
+        displayError("Couldn't find a game with that app id");
+        return;
+    }
+    const gameData = await getGameData(queryId);
+    displayGameData(gameData, queryId);
+
 }
 
 async function getGameData(gameId) {

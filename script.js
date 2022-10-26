@@ -36,7 +36,10 @@ async function searchByName(wantedName) {
     if (matching_ids.length === 0) {
         displayError("Couldn't find a game with that name");
         return;
-    } else if (matching_ids.length === 1) {
+    }
+    displayError() // this search is valid, so remove any displayed error
+
+    if (matching_ids.length === 1) {
         // Gets the game id
         const gameId = matching_ids[0]
         const data = await getGameData(gameId);
@@ -57,6 +60,19 @@ async function getGameData(gameId) {
 }
 
 function displayError(errorMessage) {
+    // If `errorMessage` is passed, then we replace the current error message with it.
+    // Otherwise, simply remove the currently displayed error message.
+    const prevDisplayedError = document.querySelector(".error");
+    if (!prevDisplayedError && !errorMessage) return; // tried to remove existing error but there wasn't one
+
+    if (prevDisplayedError !== null) { // there's an error message currently being displayed
+        if (prevDisplayedError.innerText === errorMessage) {
+            return // optimisation so we don't make redundant p elements
+        }
+        prevDisplayedError.remove();
+        if (errorMessage === undefined) return;
+    }
+    // Display new error message
     const p = document.createElement("p");
     p.classList.add("error");
     p.innerText = errorMessage;

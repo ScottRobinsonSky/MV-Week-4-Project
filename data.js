@@ -171,7 +171,7 @@ const currencyList = [
     "currencyName": "Nepal (USD)"
   },
   {
-    "countryCode": "PK",
+    "countryCode": "BD",
     "currencyName": "Bangladesh (USD)"
   },
   {

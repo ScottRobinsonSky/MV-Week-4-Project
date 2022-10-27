@@ -2,7 +2,7 @@
 Front End
 =========
 
-add strike and green class
+add strike and discount class
 
 Featured Games
 --------------
@@ -33,43 +33,45 @@ x
 Featured Games
 --------------
 
+--data-- means you still need to get the actual data structure from the api
 ### for each featured game
 const featureContainer = document.getElementByID("featured-games-container")
 const card = document.createElement("article")
 card.className = "featured-game"
 const art = document.createElement("img")
-art.src = ${art url}
-art.alt = ${game title}
+art.src = --art url--
+art.alt = `Art from ${--game title--}.`
 card.append(art)
 const title = document.createElement("p")
-title.innerText = ${game title}
+title.innerText = --game title--
 
 ALT--------------------------------
 
     card.append(title)
     const price = document.createElement("p")
-    price.innertext = ${game price}
+    price.innertext = --game price--
     card.append(price)
     featureContainer.append(card)
 
-    OR
+    OR 
 
     if(discounted = true) {
+        // create elements
         const priceContainer = document.createElement("div")
         const originalPrice = document.createElement("p")
         const discountPrice = document.createElement("p")
-        const discountPercent = document.createElement("p")
-        originalPrice.className = "strike"
-        originalPrice.innerText = £{original price}
-        discountPrice.className = "green"
-        discountPrice.innerText = ${discount price}
-        discountPercent.className = "green"
-        discountPercent.innerText = &{discount percent}
-        priceContainer.append(originalPrice, discountPrice, discountPercent)
+        // add class and text to originalPrice
+        originalPrice.classList.add("strike")
+        originalPrice.innerText = --original price--
+        // add class and text to discountPrice
+        discountPrice.classList.add("discount")
+        discountPrice.innerText = `{--discount price--} (-{--discount percent--}%)`
+        // append
+        priceContainer.append(originalPrice, discountPrice)
         card.append(priceContainer)
     } else {
         const price = document.createElement("p")
-        price.innerText = ${game price}
+        price.innerText = --game price--
         card.append(price)
     }
 
@@ -83,14 +85,53 @@ Game Info Display
 const dataContainer = document.getElementByID("game-data-container")
 ### general data
 
-title
-normal price
-discount price
-discount percent
-release date
-game website
-developer
-publisher
+const generalData = document.getElementByID("data-general")
+// reusing some variables here but they should be in a completely separate function so it should be fine right?
+// TITLE
+const title = create("h4")
+title.innerText = data.name
+generalData.append(title)
+// PRICE
+if(data.is_free === true) {
+    const free = create("p")
+    free.innerText = "Free"
+    dataContainer.append(free)
+} else if(data.price_overview.initial !=== data.price_overview.final) {
+    // create elements
+    const priceContainer = create("div")
+    const originalPrice = create("p")
+    const discountPrice = create("p")
+    // add class and text to originalPrice
+    originalPrice.classList.add("strike")
+    originalPrice.innerText = data.price_overview.initial_formatted
+    // add class and text to discountPrice
+    discountPrice.classList.add("discount")
+    discountPrice.innerText = `{data.price_overview.final_formatted} (-${data.price_overview.discount_percent}%)`
+    // append
+    priceContainer.append(originalPrice, discountPrice)
+    dataContainer.append(priceContainer)
+} else {
+    const price = create("p")
+    price.innerText = data.price_overview.final_formatted
+    dataContainer.append(price)
+}
+// RELEASE DATE
+const releaseDate = create("p")
+releaseDate.innerText = data.release_date.date
+generalData.append(releaseDate)
+// DEVELOPER
+const developer = create("p")
+developer.innerText = --developer--
+generalData.append(developer)
+// PUBLISHER
+const publisher = create("p")
+publisher.innerText = --publisher--
+generalData.append(publisher)
+// WEBSITE
+const website = create("a")
+website.setAttribute("href", data.website)
+website.setAttribute("target", "_blank")
+generalData.append(website)
 
 ### data requirements
 
@@ -142,5 +183,13 @@ if (data.platforms.linux === true) {
     linuxRequirements.innerText = "Not supported."
     requirementsContainer.append(linuxRequirements)
 }
+
+## art
+
+## description
+
+## critic
+
+
 
 

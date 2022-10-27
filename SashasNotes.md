@@ -3,6 +3,7 @@ Front End
 =========
 
 add strike and discount class
+add description class
 
 Featured Games
 --------------
@@ -186,9 +187,29 @@ if (data.platforms.linux === true) {
 
 ## art
 
+const gameArt = document.createElement("img")
+gameArt.src = data.header_image
+gameArt.alt = "gameArt"
+dataContainer.append(gameArt)
+
+
 ## description
 
-## critic
+const description = create("p")
+description.innerText = data.detailed_description
+description.classList.add("description")
+dataContainer.append(description)
+
+## score
+
+const score = create("a")
+score.innerText = data.metacritic.score
+score.setAttribute("href", data.metacritic.url)
+score.setAttribute("target", "_blank")
+score.classList.add("score")
+dataContainer.append(score)
+
+
 
 
 

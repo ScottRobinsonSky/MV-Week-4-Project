@@ -2,7 +2,7 @@
 Front End
 =========
 
-x
+add strike and green class
 
 Featured Games
 --------------
@@ -33,25 +33,92 @@ x
 Featured Games
 --------------
 
-for each featured game
-const container = document.getElementByID("game-data-container")
-const card = document.createElement("div")
+### for each featured game
+const featureContainer = document.getElementByID("featured-games-container")
+const card = document.createElement("article")
 card.className = "featured-game"
-container.append(card)
 const art = document.createElement("img")
 art.src = ${art url}
 art.alt = ${game title}
 card.append(art)
 const title = document.createElement("p")
-title.innertext = ${game title}
-card.append(title)
-const price = document.createElement("p")
-price.innertext = ${game price}
-card.append(price)
+title.innerText = ${game title}
+
+ALT--------------------------------
+
+    card.append(title)
+    const price = document.createElement("p")
+    price.innertext = ${game price}
+    card.append(price)
+    featureContainer.append(card)
+
+    OR
+
+    if(discounted = true) {
+        const priceContainer = document.createElement("div")
+        const originalPrice = document.createElement("p")
+        const discountPrice = document.createElement("p")
+        const discountPercent = document.createElement("p")
+        originalPrice.className = "strike"
+        originalPrice.innerText = £{original price}
+        discountPrice.className = "green"
+        discountPrice.innerText = ${discount price}
+        discountPercent.className = "green"
+        discountPercent.innerText = &{discount percent}
+        priceContainer.append(originalPrice, discountPrice, discountPercent)
+        card.append(priceContainer)
+    } else {
+        const price = document.createElement("p")
+        price.innerText = ${game price}
+        card.append(price)
+    }
+
+
 
 
 
 Game Info Display
 -----------------
+
+const dataContainer = document.getElementByID("game-data-container")
+### general data
+
+title
+normal price
+discount price
+discount percent
+release date
+game website
+developer
+publisher
+
+### data requirements
+
+const requirementsContainer = document.getElementByID("data-requirements")
+if win true {
+    const windows = document.createElement("img")
+    windows.src = (windows logo image)
+    windows.alt = "Windows"
+    requirementsContainer.append(windows)
+    const requirements = document.createElement("figcaption")
+    // data: minimum has HTML code so may need innerHTML or textContent? may need to experiment
+    requirements.innerText = (data: minimum)
+    requirementsContainer.append(requirements)
+
+} else {
+
+}
+
+if mac true {
+
+} else {
+
+}
+
+if linux true {
+
+} else {
+
+}
 
 

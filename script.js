@@ -123,37 +123,43 @@ function displayFeaturedGames(reformattedData, isMain) {
         art.src = gameData.small_capsule_image;
         art.alt = `Art from ${gameData.name}`;
 
-        const title = document.createElement("p");
+        const title = document.createElement("h4");
         title.innerText = gameData.name;
 
-        card.append(art, title);
+        card.append(art);
 
         if (gameData.discounted) {
             const priceContainer = document.createElement("div");
             const originalPriceElement = document.createElement("p");
             const discountPriceElement = document.createElement("p");
+            const discountPercentElement = document.createElement("p");
 
-            originalPriceElement.classList.add("strike");
+            priceContainer.classList.add("price-container")
+            originalPriceElement.classList.add("original-price");
             
             // NB: If we allow user to display feaatured games' price in a currency other than 
             // GBP, then we'll need to instead make this a lookup so that the currency symbol remains correct.
             // This also applies to the `discountPriceElement` below, and the `priceElement` when there's no discount.
             const originalPrice = gameData.original_price;
-            originalPriceElement.classList.innerText = `£${originalPrice / 100}`;
+            originalPriceElement.innerText = `£${originalPrice / 100}`;
 
-            discountPriceElement.classList.add("discount");
+            discountPriceElement.classList.add("discount-price");
+            discountPercentElement.classList.add("discount-percent")
             
             const discountPrice = gameData.final_price;
             const discountPercent = gameData.discount_percent;
             if (discountPercent === 100) { // game is free
-                discountPriceElement.innerText = "Free (-100%)";
+                discountPriceElement.innerText = "Free";
+                discountPercentElement.innerText = "-100%"
             } else {
-                discountPriceElement.innerText = `£${discountPrice / 100} (-${discountPercent}%)`;
+                discountPriceElement.innerText = `£${discountPrice / 100}`;
+                discountPercentElement.innerText = `-${discountPercent}%`
             }
-            priceContainer.append(originalPriceElement, discountPriceElement)
+            priceContainer.append(discountPercentElement, originalPriceElement, discountPriceElement)
             card.append(priceContainer);
         } else {
             const priceElement = document.createElement("p")
+            priceElement.classList.add("price")
             
             const price = gameData.final_price;
             priceElement.innerText = price === 0 ? "Free" : `£${price / 100}`;

@@ -1,181 +1,44 @@
 // This is matches currency name to the country that uses that currency
 // Ireland is used for Euros
 // For some south asian countries the price is in usd but it's different to the United States price
-const currencyList = [
-  {
-    "countryCode": "AE",
-    "currencyName": "United Arab Emirates Dirham"
-  },
-  {
-    "countryCode": "AR",
-    "currencyName": "Argentine Pesos"
-  },
-  {
-    "countryCode": "AU",
-    "currencyName": "Australian Dollars"
-  },
-  {
-    "countryCode": "BR",
-    "currencyName": "Brazilian Reals"
-  },
-  {
-    "countryCode": "CA",
-    "currencyName": "Canadian Dollars"
-  },
-  {
-    "countryCode": "CH",
-    "currencyName": "Swiss Franc"
-  },
-  {
-    "countryCode": "CL",
-    "currencyName": "Chilean Pesos"
-  },
-  {
-    "countryCode": "CN",
-    "currencyName": "Chinese yuans"
-  },
-  {
-    "countryCode": "CO",
-    "currencyName": "Colombian Peso"
-  },
-  {
-    "countryCode": "CR",
-    "currencyName": "Costa Rican Colons"
-  },
-  {
-    "countryCode": "IE",
-    "currencyName": "Euros"
-  },
-  {
-    "countryCode": "GB",
-    "currencyName": "British Pounds"
-  },
-  {
-    "countryCode": "HK",
-    "currencyName": "Hong Kong Dollars"
-  },
-  {
-    "countryCode": "IL",
-    "currencyName": "Israeli New Shekels"
-  },
-  {
-    "countryCode": "ID",
-    "currencyName": "Indonesian Rupiahs"
-  },
-  {
-    "countryCode": "IN",
-    "currencyName": "Indian Rupees"
-  },
-  {
-    "countryCode": "JP",
-    "currencyName": "Japanese Yen"
-  },
-  {
-    "countryCode": "KR",
-    "currencyName": "South Korean Won"
-  },
-  {
-    "countryCode": "KW",
-    "currencyName": "Kuwaiti Dinars"
-  },
-  {
-    "countryCode": "KZ",
-    "currencyName": "Kazakstani Tenge"
-  },
-  {
-    "countryCode": "MX",
-    "currencyName": "Mexican Pesos"
-  },
-  {
-    "countryCode": "MY",
-    "currencyName": "Malaysian Ringgit"
-  },
-  {
-    "countryCode": "NO",
-    "currencyName": "Norwegian Krone"
-  },
-  {
-    "countryCode": "NZ",
-    "currencyName": "New Zealand Dollars"
-  },
-  {
-    "countryCode": "PE",
-    "currencyName": "Peruvian Sol"
-  },
-  {
-    "countryCode": "NP",
-    "currencyName": "Phillipene Peso"
-  },
-  {
-    "countryCode": "PL",
-    "currencyName": "Polish Zloty"
-  },
-  {
-    "countryCode": "QA",
-    "currencyName": "Qatari Riyals"
-  },
-  {
-    "countryCode": "RU",
-    "currencyName": "Russian Roubles"
-  },
-  {
-    "countryCode": "SA",
-    "currencyName": "Saudi Riyals"
-  },
-  {
-    "countryCode": "SG",
-    "currencyName": "Singapore Dollars"
-  },
-  {
-    "countryCode": "TH",
-    "currencyName": "Thai Baht"
-  },
-  {
-    "countryCode": "TR",
-    "currencyName": "Turkish Lira"
-  },
-  {
-    "countryCode": "TW",
-    "currencyName": "New Taiwan Dollars"
-  },
-  {
-    "countryCode": "UA",
-    "currencyName": "Ukrainian Hryvnia"
-  },
-  {
-    "countryCode": "US",
-    "currencyName": "United States Dollars"
-  },
-  {
-    "countryCode": "UY",
-    "currencyName": "Uruguayan Peso"
-  },
-  {
-    "countryCode": "VN",
-    "currencyName": "Vietnamese Dons"
-  },
-  {
-    "countryCode": "ZA",
-    "currencyName": "South African Rand"
-  },
-  {
-    "countryCode": "PK",
-    "currencyName": "Pakistan (USD)"
-  },
-  {
-    "countryCode": "BT",
-    "currencyName": "Bhutan (USD)"
-  },
-  {
-    "countryCode": "NP",
-    "currencyName": "Nepal (USD)"
-  },
-  {
-    "countryCode": "PK",
-    "currencyName": "Bangladesh (USD)"
-  },
-  {
-    "countryCode": "LK",
-    "currencyName": "Sri Lanka (USD)"
-  },
-]
+const currencyList = {
+  AED: { symbol: 'AED', countryCode: 'AE' },
+  ARS: { symbol: 'AR$', countryCode: 'AR' },
+  AUD: { symbol: 'AU$', countryCode: 'AU' },
+  BRL: { symbol: 'R$', countryCode: 'BR' },
+  CAD: { symbol: 'CA$', countryCode: 'CA' },
+  CHF: { symbol: 'CHF', countryCode: 'LI' },
+  CLP: { symbol: 'CL$', countryCode: 'CL' },
+  CNY: { symbol: 'CN¥', countryCode: 'CN' },
+  COP: { symbol: 'CO$', countryCode: 'CO' },
+  CRC: { symbol: '₡', countryCode: 'CR' },
+  EUR: { symbol: '€', countryCode: 'AX' },
+  GBP: { symbol: '£', countryCode: 'IO' },
+  HKD: { symbol: 'HK$', countryCode: 'HK' },
+  ILS: { symbol: '₪', countryCode: 'IL' },
+  IDR: { symbol: 'Rp', countryCode: 'ID' },
+  INR: { symbol: 'Rs', countryCode: 'IN' },
+  JPY: { symbol: '¥', countryCode: 'JP' },
+  KRW: { symbol: '₩', countryCode: 'KR' },
+  KWD: { symbol: 'KD', countryCode: 'KW' },
+  KZT: { symbol: 'KZT', countryCode: 'KZ' },
+  MXN: { symbol: 'MX$', countryCode: 'MX' },
+  MYR: { symbol: 'RM', countryCode: 'MY' },
+  NOK: { symbol: 'Nkr', countryCode: 'BV' },
+  NZD: { symbol: 'NZ$', countryCode: 'CK' },
+  PEN: { symbol: 'S/.', countryCode: 'PE' },
+  PHP: { symbol: '₱', countryCode: 'PH' },
+  PLN: { symbol: 'zł', countryCode: 'PL' },
+  QAR: { symbol: 'QR', countryCode: 'QA' },
+  RUB: { symbol: 'RUB', countryCode: 'RU' },
+  SAR: { symbol: 'SR', countryCode: 'SA' },
+  SGD: { symbol: 'S$', countryCode: 'SG' },
+  THB: { symbol: '฿', countryCode: 'TH' },
+  TRY: { symbol: 'TL', countryCode: 'TR' },
+  TWD: { symbol: 'NT$', countryCode: 'TW' },
+  UAH: { symbol: '₴', countryCode: 'UA' },
+  USD: { symbol: '$', countryCode: 'AS' },
+  UYU: { symbol: '$U', countryCode: 'UY' },
+  VND: { symbol: '₫', countryCode: 'VN' },
+  ZAR: { symbol: 'R', countryCode: 'ZA' }
+}

@@ -94,12 +94,20 @@ function addCurrencyOptions() {
     currencySelect.innerHTML = ''
     // const sortedList = currencyList.sort((a, b) => a.currencyName - b.currencyName)
     // Add all countries to select
-    currencyList.forEach(item => {
+    Object.entries(currencyList).forEach(item => {
+        console.log(item)
+        const currencyCode = item[0]
+        const countryCode = item[1].countryCode
+        const symbol = item[1].symbol
+        let symbolText = currencyCode
+        if(symbol !== currencyCode) {
+            symbolText = `${currencyCode} (${symbol})`
+          }
         const optionElement = document.createElement('option')
-        optionElement.innerText = item.currencyName
-        optionElement.id = `cc-${item.countryCode}`
-        optionElement.value = item.countryCode
-        optionElement.setAttribute('name', item.countryCode)
+        optionElement.innerText = symbolText
+        optionElement.id = `cc-${countryCode}`
+        optionElement.value = countryCode
+        optionElement.setAttribute('name', countryCode)
         currencySelect.appendChild(optionElement)
     })
 

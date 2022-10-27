@@ -160,14 +160,22 @@ function displayGameData(gameData, gameId) {
 function addCurrencyOptions() {
     // Remove everything from select element
     currencySelect.innerHTML = ''
-
+    // const sortedList = currencyList.sort((a, b) => a.currencyName - b.currencyName)
     // Add all countries to select
-    countryList.forEach(item => {
+    Object.entries(currencyList).forEach(item => {
+        console.log(item)
+        const currencyCode = item[0]
+        const countryCode = item[1].countryCode
+        const symbol = item[1].symbol
+        let symbolText = currencyCode
+        if(symbol !== currencyCode) {
+            symbolText = `${currencyCode} (${symbol})`
+          }
         const optionElement = document.createElement('option')
-        optionElement.innerText = item.country
-        optionElement.id = `cc-${item.code}`
-        optionElement.value = item.code
-        optionElement.setAttribute('name', item.country)
+        optionElement.innerText = symbolText
+        optionElement.id = `cc-${countryCode}`
+        optionElement.value = countryCode
+        optionElement.setAttribute('name', countryCode)
         currencySelect.appendChild(optionElement)
     })
 

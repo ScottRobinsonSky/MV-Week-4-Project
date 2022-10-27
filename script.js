@@ -56,7 +56,14 @@ async function searchByName(wantedName) {
     }
 }
 
-function removeDuplicateFeaturedGames(featuredGames) {
+function removeKeysFromObject(keysToRemove, obj) {
+    for (let key of Object.keys(obj)) {
+        if (keysToRemove.has(key)) delete obj[key];
+    }
+    return obj;
+}
+
+function reformatFeaturedGames(featuredGames) {
     const uniqueGames = {}
     const keysToRemove = new Set([
         'header_image', 'id', 'large_capsule_image', 'linux_available',
@@ -65,14 +72,9 @@ function removeDuplicateFeaturedGames(featuredGames) {
 
     for (let game of featuredGames) {
         if (uniqueGames[game.id] === undefined) {
-            uniqueGames[game.id] = {};
-
-            for (let key of Object.keys(game)) {
-                if (keysToRemove.has(key)) {
-                    continue // by skipping we don't add the key, i.e. we effectively remove it
-                }
-                uniqueGames[game.id][key] = game[key];
-            }
+            const gameId = game.id;
+            filteredData = removeKeysFromObject(keysToRemove, game);
+            uniqueGames[gameId] = filteredData;
         }
     }
     return uniqueGames;
@@ -90,11 +92,82 @@ async function getFeaturedGames() {
 
 async function displayedFeaturedGames() {
     const data = await getFeaturedGames();
-    
-    const reformatted_data = removeDuplicateFeaturedGames(
-        data.featured_linux.concat(data.featured_mac).concat(data.featured_win)
-    );
-    return reformatted_data;
+
+    const osFeaturedGames = data.featured_linux.concat(data.featured_mac).concat(data.featured_win);
+    const featuredGamesNoDupes = reformatFeaturedGames(osFeaturedGames);
+
+    if (data.large_capsules.length === 0) { // there's not a main game
+        const firstKey = Object.keys(featuredGamesNoDupes)[0];
+        displayFeaturedGames([featuredGamesNoDupes[firstKey]], true); // so just use an OS featured game
+        delete featuredGamesNoDupes[firstKey]; // remove from object since already displayed (as main featured game)
+    } else {
+        displayFeaturedGames(data.large_capsules, true);
+    }
+    displayFeaturedGames(featuredGamesNoDupes);
+}
+
+function displayFeaturedGames(reformattedData, isMain) {
+    // TODO: Make sure to add main featured game as well as `reformatted_data`
+
+    for (let gameId of Object.keys(reformattedData)) {
+        gameData = reformattedData[gameId];
+
+        const featureContainer = document.getElementById("featured-games-container");
+        const card = document.createElement("article");
+        if (isMain) {
+            card.id = "main-featured-game";
+        } else {
+            card.classList.add("featured-game");
+        }
+        const art = document.createElement("img");
+        art.src = gameData.small_capsule_image;
+        art.alt = `Art from ${gameData.name}`;
+
+        const title = document.createElement("p");
+        title.innerText = gameData.name;
+
+        card.append(art, title);
+
+        if (gameData.discounted) {
+            const priceContainer = document.createElement("div");
+            const originalPriceElement = document.createElement("p");
+            const discountPriceElement = document.createElement("p");
+
+            originalPriceElement.classList.add("strike");
+            
+            // NB: If we allow user to display feaatured games' price in a currency other than 
+            // GBP, then we'll need to instead make this a lookup so that the currency symbol remains correct.
+            // This also applies to the `discountPriceElement` below, and the `priceElement` when there's no discount.
+            const originalPrice = gameData.original_price;
+            originalPriceElement.classList.innerText = `£${originalPrice / 100}`;
+
+            discountPriceElement.classList.add("discount");
+            
+            const discountPrice = gameData.final_price;
+            const discountPercent = gameData.discount_percent;
+            if (discountPercent === 100) { // game is free
+                discountPriceElement.innerText = "Free (-100%)";
+            } else {
+                discountPriceElement.innerText = `£${discountPrice / 100} (-${discountPercent}%)`;
+            }
+            priceContainer.append(originalPriceElement, discountPriceElement)
+            card.append(priceContainer);
+        } else {
+            const priceElement = document.createElement("p")
+            
+            const price = gameData.final_price;
+            priceElement.innerText = price === 0 ? "Free" : `£${price / 100}`;
+
+            card.append(priceElement);
+        }
+        featureContainer.append(card);
+    }
+
+    return reformattedData;
+}
+
+function displayMainFeaturedGame(gameData) {
+    console.log(gameData);
 }
 
 function displayError(errorMessage) {
@@ -147,3 +220,4 @@ function getSelectedCountry() {
     return selectedOption
 }
 addCurrencyOptions()
+displayedFeaturedGames();

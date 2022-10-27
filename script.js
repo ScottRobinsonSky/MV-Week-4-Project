@@ -23,7 +23,7 @@ function processSearchQuery(e) {
 }
 
 async function searchByName(wantedName) {
-    const response = await fetch("http://localhost:8080/http://api.steampowered.com/ISteamApps/GetAppList/v0002/");
+    const response = await fetch("http://localhost:8080/https://api.steampowered.com/ISteamApps/GetAppList/v0002/");
     const data = await response.json();
     
     const matching_ids = [];
@@ -56,9 +56,45 @@ async function searchByName(wantedName) {
     }
 }
 
+function removeDuplicateFeaturedGames(featuredGames) {
+    const uniqueGames = {}
+    const keysToRemove = new Set([
+        'header_image', 'id', 'large_capsule_image', 'linux_available',
+        'mac_available', 'streamingvideo_available', 'type', 'windows_available'
+    ]);
+
+    for (let game of featuredGames) {
+        if (uniqueGames[game.id] === undefined) {
+            uniqueGames[game.id] = {};
+
+            for (let key of Object.keys(game)) {
+                if (keysToRemove.has(key)) {
+                    continue // by skipping we don't add the key, i.e. we effectively remove it
+                }
+                uniqueGames[game.id][key] = game[key];
+            }
+        }
+    }
+    return uniqueGames;
+}
+
 async function getGameData(gameId) {
     const response = await fetch(`http://localhost:8080/https://store.steampowered.com/api/appdetails?appids=${gameId}&cc=${getSelectedCountry()}`);
     return await response.json();
+}
+
+async function getFeaturedGames() {
+    const response = await fetch('http://localhost:8080/https://store.steampowered.com/api/featured/');
+    return await response.json();
+}
+
+async function displayedFeaturedGames() {
+    const data = await getFeaturedGames();
+    
+    const reformatted_data = removeDuplicateFeaturedGames(
+        data.featured_linux.concat(data.featured_mac).concat(data.featured_win)
+    );
+    return reformatted_data;
 }
 
 function displayError(errorMessage) {

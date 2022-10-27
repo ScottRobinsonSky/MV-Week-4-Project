@@ -47,7 +47,7 @@ async function searchByName(wantedName) {
         const data = await getGameData(gameId)
 
         // Do nothing if there is an error
-        if (gameData === false) return 
+        if (data === false) return 
 
         // Otherwise display game data
         displayGameData(data, gameId);
@@ -116,6 +116,9 @@ function displayGameData(gameData, gameId) {
     const data = gameData[`${gameId}`]['data']
     const pricingData = data.price_overview
     console.log(pricingData)
+
+    // Remove any other errors
+    displayError()
     // TODO: Implement frontend
 }
 

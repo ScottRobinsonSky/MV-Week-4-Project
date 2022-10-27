@@ -95,30 +95,52 @@ publisher
 ### data requirements
 
 const requirementsContainer = document.getElementByID("data-requirements")
-if win true {
-    const windows = document.createElement("img")
-    windows.src = (windows logo image)
-    windows.alt = "Windows"
-    requirementsContainer.append(windows)
-    const requirements = document.createElement("figcaption")
-    // data: minimum has HTML code so may need innerHTML or textContent? may need to experiment
-    requirements.innerText = (data: minimum)
-    requirementsContainer.append(requirements)
+// WINDOWS
+const windows = document.createElement("img")
+windows.src = (windows logo image)
+windows.alt = "Windows"
+requirementsContainer.append(windows)
+const winRequirements = document.createElement("figcaption")
 
+if (data.platforms.windows === true) {
+    // minimum has HTML code so may need innerHTML or textContent? may need to experiment
+    winRequirements.innerText = (data.pc_requirements.minimum)
+    requirementsContainer.append(winRequirements)
 } else {
-
+    winRequirements.innerText = "Not supported."
+    requirementsContainer.append(winRequirements)
 }
 
-if mac true {
+// MAC
+const mac = document.createElement("img")
+mac.src = (mac logo image)
+mac.alt = "Mac"
+requirementsContainer.append(mac)
+const macRequirements = document.createElement("figcaption")
 
+if (data.platforms.mac === true) {
+    // minimum has HTML code so may need innerHTML or textContent? may need to experiment
+    macRequirements.innerText = (data.mac_requirements.minimum)
+    requirementsContainer.append(macRequirements)
 } else {
-
+    macRequirements.innerText = "Not supported."
+    requirementsContainer.append(macRequirements)
 }
 
-if linux true {
+// LINUX
+const linux = document.createElement("img")
+linux.src = (linux logo image)
+linux.alt = "Linux"
+requirementsContainer.append(linux)
+const linuxRequirements = document.createElement("figcaption")
 
+if (data.platforms.linux === true) {
+    // minimum has HTML code so may need innerHTML or textContent? may need to experiment
+    linuxRequirements.innerText = (data.linux_requirements.minimum)
+    requirementsContainer.append(linuxRequirements)
 } else {
-
+    linuxRequirements.innerText = "Not supported."
+    requirementsContainer.append(linuxRequirements)
 }
 
 

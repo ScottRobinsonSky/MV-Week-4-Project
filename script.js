@@ -14,7 +14,7 @@ function processSearchQuery(e) {
 
     if (!isNaN(+query)) {
         // `query` is a valid number, which we take to mean user is trying to search by id.
-        // This feature isn't yet supported, so for now we just return.
+        searchById(query)
         return;
     }
 
@@ -25,7 +25,7 @@ function processSearchQuery(e) {
 async function searchByName(wantedName) {
     const response = await fetch("http://localhost:8080/https://api.steampowered.com/ISteamApps/GetAppList/v0002/");
     const data = await response.json();
-    
+
     const matching_ids = [];
     Object.values(data.applist.apps).forEach((obj) => {
         const id = obj.appid;
@@ -44,7 +44,12 @@ async function searchByName(wantedName) {
     if (matching_ids.length === 1) {
         // Gets the game id
         const gameId = matching_ids[0]
-        const data = await getGameData(gameId);
+        const data = await getGameData(gameId)
+
+        // Do nothing if there is an error
+        if (data === false) return 
+
+        // Otherwise display game data
         displayGameData(data, gameId);
     } else {
         // Handle when there's multiple matches.
@@ -77,10 +82,34 @@ function removeDuplicateFeaturedGames(featuredGames) {
     }
     return uniqueGames;
 }
+async function searchById(queryId) {
+    const response = await fetch("http://localhost:8080/http://api.steampowered.com/ISteamApps/GetAppList/v0002/");
+    const data = await response.json();
+    const matchingApp = data.applist.apps.find(item => item.appid.toString() === queryId)
+    if (matchingApp === undefined) {
+        // There is an error: no apps match this app id
+        displayError("Couldn't find a game with that app id");
+        return;
+    }
+    const gameData = await getGameData(queryId);
+
+    // Do nothing if there is an error
+    if (gameData === false) return
+
+    // Otherwise display data
+    displayGameData(gameData, queryId);
+
+}
 
 async function getGameData(gameId) {
     const response = await fetch(`http://localhost:8080/https://store.steampowered.com/api/appdetails?appids=${gameId}&cc=${getSelectedCountry()}`);
-    return await response.json();
+    const gameData = await response.json();
+    if (!gameData[+gameId].success) {
+        // There was an error getting this app from api
+        displayError('Error getting app data')
+        return false
+    }
+    return gameData
 }
 
 async function getFeaturedGames() {
@@ -122,6 +151,9 @@ function displayGameData(gameData, gameId) {
     const data = gameData[`${gameId}`]['data']
     const pricingData = data.price_overview
     console.log(pricingData)
+
+    // Remove any other errors
+    displayError()
     // TODO: Implement frontend
 }
 

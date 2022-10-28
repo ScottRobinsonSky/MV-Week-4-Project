@@ -144,15 +144,23 @@ function displayFeaturedGames(reformattedData, isMain) {
 
         const featureContainer = document.getElementById("featured-games-container");
         const card = document.createElement("article");
+        card.classList.add("flex-center", "flex-column")
 
         const art = document.createElement("img");
         art.src = gameData.small_capsule_image;
         art.alt = `Art from ${gameData.name}`;
 
-        const title = document.createElement("h4");
-        title.innerText = gameData.name;
-
         card.append(art);
+
+                if (isMain) {
+                    card.id = "main-featured-game";
+                    const title = document.createElement("h4");
+                    title.innerText = gameData.name;
+                    title.classList.add("main-feature-title")
+                    card.append(title)
+                } else {
+                  card.classList.add("featured-game");
+                }
 
         // NB: If we allow user to display featured games' price in a currency other than 
         // GBP, then we'll need to instead make this a lookup so that the currency symbol remains correct.

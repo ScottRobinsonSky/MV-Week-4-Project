@@ -52,6 +52,9 @@ async function searchByName(wantedName) {
         // Otherwise display game data
         displayGameData(data, gameId);
     } else {
+        // This displays an error if there are multiple matches
+        displayError('Multiple apps were found with this name')
+        
         // Handle when there's multiple matches.
         //
         // This could be done by displaying options and having the user select which one they meant. 

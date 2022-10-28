@@ -172,10 +172,6 @@ function displayFeaturedGames(reformattedData, isMain) {
     return reformattedData;
 }
 
-function displayMainFeaturedGame(gameData) {
-    console.log(gameData);
-}
-
 function displayError(errorMessage) {
     // If `errorMessage` is passed, then we replace the current error message with it.
     // Otherwise, simply remove the currently displayed error message.

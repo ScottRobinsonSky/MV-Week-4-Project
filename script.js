@@ -112,11 +112,7 @@ function displayFeaturedGames(reformattedData, isMain) {
 
         const featureContainer = document.getElementById("featured-games-container");
         const card = document.createElement("article");
-        if (isMain) {
-            card.id = "main-featured-game";
-        } else {
-            card.classList.add("featured-game");
-        }
+
         const art = document.createElement("img");
         art.src = gameData.small_capsule_image;
         art.alt = `Art from ${gameData.name}`;

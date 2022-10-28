@@ -13,59 +13,92 @@
 /* || FONTS */
 @import url("https://fonts.googleapis.com/css?family=Audiowide&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Unica+One&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Gruppo&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
-:root{
-  --black: #090E1D;
+:root {
+  /* COLOURS */
+  --black: #090e1d;
+  --dark-blue: #0B173B;
   --dark-grey: #373747;
-  --navy-blue: #1D2C4E;
-  --light-blue: #3396BA;
-  --green: #60C137;
-  --light-grey: #B4BAC4;
-  --white: #E3EBEE;
+  --navy-blue: #1d2c4e;
+  --light-blue: #3396ba;
+  --dark-green: #255825;
+  --green: #81DD5A;
+  --light-grey: #b4bac4;
+  --white: #e3ebee;
+    /* FONT SIZE */
+  --h1-font-size: calc(48px + 0.390625vw);
+  --h2-font-size: calc(36px + 0.390625vw);
+  --main-feat-font-size: 3.8vw;
+  --price-font-size: 2.9vw;
+  --feat-o-price-font-size: 1.45vw;
+  --feat-d-price-font-size: 1.5vw;
+  --feat-discount-font-size: 2.55vw;
+  /* GRID SIZE */
+  --price-template-row: 2.5vw 2.5vw;
+  --price-template-column: 9vw 6vw;
+  /* OTHER */
+  --drop-shadow: 0 1px 5px 1px var(--black);
+  --depth: 0 0 5px 2px var(--black) inset;  
 }
 html {
   text-align: center;
   font-size: calc(16px + 0.390625vw);
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  color: var(--white);
 }
 
 /* || PRIMARY ELEMENT */
-body{
-  background-color: var(--navy-blue);
+body {
+  width: 96%;
+  background-image: radial-gradient(var(--navy-blue), var(--dark-blue), var(--black));
   display: flex;
-  flex-flow: column wrap;
-  margin: 3%;
-  
+  flex-direction: column;
+  margin: 2%;
 }
-header{
-  background-color: var(--light-grey);
-  border-radius: 5px 5px 0 0;
-
+header {
+  width: 100%;
 }
-main{
-background-color: var(--light-grey);
+main {
+  width: 100%;
+  background-color: var(--dark-grey);
+  /* border: 2px solid var(--black); */
+  border-radius: 5px;
+  background-image: radial-gradient(var(--dark-grey), var(--dark-grey), var(--black));
+  box-shadow: 3px 0 12px 6px var(--black) inset;
 }
-footer{
-background-color: var(--light-grey);
-border-radius: 0 0 5px 5px;
+footer {
+  width: 100%;
 }
 /* || SECONDARY ELEMENT */
 h1 {
   font-family: "Audiowide", Impact, Times, serif;
+  font-size: var(--h1-font-size);
+  margin: 2% auto;
+  color: var(--white);
 }
-h2{
-  font-family: "Unica One", system-ui, Times, serif;
-
+h2 {
+  font-family: "Unica One", Times, serif;
+  font-size: var(--h2-font-size);
 }
-h3{
-  font-family: "Unica One", system-ui, Times, serif;
+h3 {
+  font-family: "Unica One", Times, serif;
 }
-p{
-
+h4 {
+  font-family: "Gruppo", Arial, Helvetica, sans-serif;
+  margin: 1%;
 }
-form{
-
+p {
+}
+form {
+  margin: 1%;
+}
+section {
+  margin: 3% 0 3% 0;
+}
+article {
+  margin: 0;
 }
 
 /* || CLASS */
@@ -78,11 +111,16 @@ form{
 .flex-column {
   flex-direction: column;
 }
-.form-item{
-  margin: 1% auto;
+.form-item {
+  margin: 3% auto;
 }
-.hidden{
+.hidden {
   display: none;
+}
+.description {
+}
+.price{
+  font-size: var(--price-font-size);
 }
 
 /* || GRIDS*/
@@ -90,44 +128,131 @@ form{
 /* || FEATURED GAMES GRID */
 /* || CONTAINER */
 #featured-games-container {
+  width: 98%;
+  margin: auto;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 17vw;
   grid-auto-flow: row dense;
 }
 /* || ELEMENTS */
-#feat-game-head {
-  grid-column: 1 / 6;
-  grid-row: 1 / 2;
+#featured-games-container article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid var(--black); */
+  border-radius: 2px;
+  box-shadow: 0 2px 4px 1px var(--black);
+  background-image: radial-gradient(var(--navy-blue), var(--black));  
+}
+#main-featured-game {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+  font-size: var(--main-feat-font-size);
+  margin: .75%;
+}
+#main-featured-game img {
+  width: 95%;
+  margin: 2.5% 2.5% 1% 2.5%;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px 2px var(--black);
 }
 .featured-game {
+  margin: 1.5%;
+}
+.featured-game img {
+  width: 90%;
+  margin: 5% 5% 2% 5%;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px 2px var(--black);
 }
 
 /* || GAME DATA GRID */
 /* || CONTAINER */
 #game-data-container {
   display: grid;
-  grid-template-areas: 
-  "g g a a a a"
-  "d d c r r r";
+  grid-template-areas:
+    "g g a a a a"
+    "d d c r r r";
 }
 /* || ELEMENTS */
-#data-general{
+#data-general {
   grid-area: g;
 }
-#data-requirements{
+#data-requirements {
   grid-area: r;
 }
-#data-art{
+#data-art {
   grid-area: a;
 }
-#data-description{
+#data-description {
   grid-area: d;
 }
-#data-critic{
+#data-score {
   grid-area: c;
 }
 
+/* || PRICE CLASSES */
+.price-container{
+  display: grid;
+  grid-template-rows: var(--price-template-row);
+  grid-template-columns: var(--price-template-column);
+  box-shadow: var(--drop-shadow);
+  margin: 3%;
+}
+.discount-percent{
+  grid-area: 1 / 1 / 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: var(--dark-green);
+  box-shadow: 3px 0 5px 2px var(--black) inset;
+  border-radius: 3px 0 0 3px;
+  font-family: "Audiowide", Impact, Times, serif;
+  font-size: var(--feat-discount-font-size);  
+  padding: 5%;
+  color: var(--green); 
+}
+.original-price {
+  grid-area: 1 / 2 / 2 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: line-through;
+  background-color: var(--dark-grey);
+  box-shadow: -2px 1px 5px 1px var(--black) inset;
+  border-radius: 0 2px 0 0;
+  font-size: var(--feat-o-price-font-size);
+  padding: 2%;
+  margin: 0;
+}
+.discount-price {
+  grid-area: 2 / 3 / 2 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-grey);
+  box-shadow: -2px -1px 5px 1px var(--black) inset;
+  border-radius: 0 0 2px 0;
+  font-size: var(--feat-d-price-font-size);
+  padding: 2%;
+  margin: 0;
+  color: var(--green);
+}
+.price {
+  align-self: center;
+  justify-self: auto;
+  background-color: var(--dark-grey);
+  box-shadow: 0 0 7px 3px var(--black) inset;
+  border-radius: 4px;
+  padding: 2.5%;
+  margin: 1% 1% 3% 1%;
+}
 
 /* || MOBILE */
 

@@ -13,8 +13,8 @@
     <header>
       <h1>Steam Search</h1>
     </header>
-    <main>
-      <button id="returnBtn" class="hidden" onclick="toggleDisplayedSection()">
+    <main class="flex-center flex-column">
+      <button id="returnBtn" onclick="toggleDisplayedSection()">
         <img id="btnSvg" src="SVG/back-svgrepo-com-white.svg" alt="Go Back"/>
       </button>
       <section id="on-load" class="flex-center flex-column">
@@ -28,7 +28,9 @@
             class="form-item"
           />
           <label for="steamCurrencySelect"></label>
-          <select name="steamCurrencySelect" id="steamCurrencySelect" ></select>
+          <select name="steamCurrencySelect" id="steamCurrencySelect" >
+            
+          </select>
           <button type="submit" id="submitSearchQuery" class="form-item">Search</button>
         </form>
         <div id="error-container"></div>
@@ -39,13 +41,13 @@
       </section>
       <section id="info-display" class="hidden">
         <article id="game-data-container">
-          <article id="data-general"></article>
-          <figure id="data-requirements"></figure>
-          <figure id="data-art-container"></figure>
-          <article id="data-description-container">
+          <article id="data-general" class="flex-grid"></article>
+          <figure id="data-requirements" class="flex-grid"></figure>
+          <figure id="data-art-container" class="flex-grid"></figure>
+          <article id="data-description-container" class="flex-grid">
             <h3>Description:</h3>
           </article>
-          <article id="data-score-container">
+          <article id="data-score-container" class="flex-grid">
             <h3>Score:</h3>
           </article>
         </article>

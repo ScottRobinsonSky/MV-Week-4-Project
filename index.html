@@ -18,7 +18,7 @@
         <img id="btnSvg" src="SVG/back-svgrepo-com-white.svg" alt="Go Back"/>
       </button>
       <section id="on-load" class="flex-center flex-column">
-        <form action="" class="flex-center flex-column">
+        <form action="" onsubmit="processSearchQuery(); return false">
           <label for="steamSearchQuery"></label>
           <input
             type="text"
@@ -27,7 +27,9 @@
             placeholder="Enter game title"
             class="form-item"
           />
-          <select onmousedown="this.size='8'" oninput="this.size='0'" id="steamCurrencySelect" name="steamCurrencySelect">
+
+          <label for="steamCurrencySelect"></label>
+          <select id="steamCurrencySelect" name="steamCurrencySelect">
 
           </select>
           <button type="submit" id="submitSearchQuery" class="form-item">Search</button>
@@ -40,8 +42,15 @@
       </section>
       <section id="info-display" class="hidden">
         <article id="game-data-container">
-          <article id="data-general"></article>
-          <figure id="data-requirements"></figure>
+          <article id="data-general" class="flex-grid"></article>
+          <figure id="data-requirements" class="flex-grid"></figure>
+          <figure id="data-art-container" class="flex-grid"></figure>
+          <article id="data-description-container" class="flex-grid">
+            <h3>Description:</h3>
+          </article>
+          <article id="data-score-container" class="flex-grid">
+            <h3>Score:</h3>
+          </article>
         </article>
       </section>
     </main>

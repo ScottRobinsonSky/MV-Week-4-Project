@@ -21,7 +21,7 @@ Game Info Display
             <figure id="data-requirements"></figure>
             <!-- #data-art -->
             <!-- #data-description -->
-            <!-- #data-critic -->
+            <!-- #data-score -->
         </article>
     </section>
 
@@ -83,21 +83,23 @@ ALT--------------------------------
 
 Game Info Display
 -----------------
-
+    // data container is main container for all Game Info
     const dataContainer = document.getElementByID("game-data-container")
+
 ### general data
 
-    const generalData = document.getElementByID("data-general")
+    // generalContainer is container for info under this general data heading, it is already appended to dataContainer in html
+    const generalContainer = document.getElementByID("data-general")
     // reusing some variables here but they should be in a completely separate function so it should be fine right?
     // TITLE
     const title = create("h4")
     title.innerText = data.name
-    generalData.append(title)
+    generalContainer.append(title)
     // PRICE
     if(data.is_free === true) {
         const free = create("p")
         free.innerText = "Free"
-        dataContainer.append(free)
+        generalContainer.append(free)
     } else if(data.price_overview.initial !=== data.price_overview.final) {
         // create elements
         const priceContainer = create("div")
@@ -111,32 +113,33 @@ Game Info Display
         discountPrice.innerText = `{data.price_overview.final_formatted} (-${data.price_overview.discount_percent}%)`
         // append
         priceContainer.append(originalPrice, discountPrice)
-        dataContainer.append(priceContainer)
+        generalContainer.append(priceContainer)
     } else {
         const price = create("p")
         price.innerText = data.price_overview.final_formatted
-        dataContainer.append(price)
+        generalContainer.append(price)
     }
     // RELEASE DATE
     const releaseDate = create("p")
     releaseDate.innerText = data.release_date.date
-    generalData.append(releaseDate)
+    generalContainer.append(releaseDate)
     // DEVELOPER
     const developer = create("p")
     developer.innerText = --developer--
-    generalData.append(developer)
+    generalContainer.append(developer)
     // PUBLISHER
     const publisher = create("p")
     publisher.innerText = --publisher--
-    generalData.append(publisher)
+    generalContainer.append(publisher)
     // WEBSITE
     const website = create("a")
     website.setAttribute("href", data.website)
     website.setAttribute("target", "_blank")
-    generalData.append(website)
+    generalContainer.append(website)
 
 ### data requirements
 
+    // requirementsContainer is container for info under this data requirements heading, it is already appended to dataContainer in html
     const requirementsContainer = document.getElementByID("data-requirements")
     // WINDOWS
     const windows = document.createElement("img")
@@ -188,6 +191,8 @@ Game Info Display
 
 ## art
 
+// has no container, appended directly to dataContainer
+
     const gameArt = document.createElement("img")
     gameArt.src = data.header_image
     gameArt.alt = "gameArt"
@@ -196,12 +201,16 @@ Game Info Display
 
 ## description
 
+// has no container, appended directly to dataContainer
+
     const description = create("p")
     description.innerText = data.detailed_description
     description.classList.add("description")
     dataContainer.append(description)
 
 ## score
+
+// has no container, appended directly to dataContainer
 
     const score = create("a")
     score.innerText = data.metacritic.score

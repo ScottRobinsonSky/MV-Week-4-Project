@@ -35,6 +35,7 @@
   --feat-o-price-font-size: 1.45vw;
   --feat-d-price-font-size: 1.5vw;
   --feat-discount-font-size: 2.55vw;
+  --score-font-size: 10vw;
   /* GRID SIZE */
   --price-template-row: 2.5vw 2.5vw;
   --price-template-column: 9vw 6vw;
@@ -192,6 +193,11 @@ form{
 /* || ELEMENTS */
 #data-general {
   grid-area: g;
+  
+}
+#data-general p{
+  margin: 0;
+
 }
 #data-requirements {
   grid-area: r;
@@ -204,6 +210,9 @@ form{
 }
 #data-score {
   grid-area: c;
+  font-size: var(--score-font-size);
+  margin: 0;
+  padding: 0;
 }
 
 /* || PRICE CLASSES */

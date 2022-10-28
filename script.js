@@ -285,36 +285,39 @@ function generateGeneralData(data) {
 }
 
 function generateArt(data) {
-    const dataContainer = document.getElementById("game-data-container");
+    const artContainer = document.getElementById("data-art-container");
 
     const gameArt = document.createElement("img");
+    gameArt.id = "data-art"
     gameArt.src = data.header_image;
     gameArt.alt = `gameArt for ${data.name}`;
     gameArt.classList.add("game-art");
 
-    dataContainer.append(gameArt);
+    artContainer.append(gameArt);
 }
 
 function generateDescription(data) {
-    const dataContainer = document.getElementById("game-data-container");
+    const descriptionContainer = document.getElementById("data-description-container");
 
     const description = document.createElement("p");
+    description.id = "data-description"
     description.innerText = data.short_description;
     description.classList.add("description");
     
-    dataContainer.append(description);
+    descriptionContainer.append(description);
 }
 
 function generateScore(data) {
-    const dataContainer = document.getElementById("game-data-container");
+    const scoreContainer = document.getElementById("data-score-container");
 
     const score = document.createElement("a");
+    score.id = "data-score"
     score.innerText = data.metacritic.score;
     score.href = data.metacritic.url;
     score.target = "_blank";
     score.classList.add("score");
 
-    dataContainer.append(score);
+    scoreContainer.append(score);
 }
 
 function displayGameData(gameData, gameId) {

@@ -65,8 +65,8 @@ async function findSearchSuggestions(e) {
                 loadedSuggestions.push(item.appid)
             })
             
-            
-        }, 600)
+            // How long after the user has typed should we get the data?
+        }, 450)
 
     
     

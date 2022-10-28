@@ -157,6 +157,16 @@ function displayFeaturedGames(reformattedData, isMain) {
 
         card.append(art);
 
+        if (isMain) {
+            card.id = "main-featured-game";
+            const title = document.createElement("h4");
+            title.innerText = gameData.name;
+            title.classList.add("main-feature-title")
+            card.append(title)
+        } else {
+          card.classList.add("featured-game");
+        }
+
         // NB: If we allow user to display featured games' price in a currency other than 
         // GBP, then we'll need to instead make this a lookup so that the currency symbol remains correct.
         if (gameData.discounted) {            

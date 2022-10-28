@@ -90,7 +90,7 @@ async function getFeaturedGames() {
     return await response.json();
 }
 
-async function displayedFeaturedGames() {
+async function getAndDisplayFeaturedGames() {
     const data = await getFeaturedGames();
 
     const osFeaturedGames = data.featured_linux.concat(data.featured_mac).concat(data.featured_win);
@@ -222,4 +222,4 @@ function getSelectedCountry() {
     return selectedOption
 }
 addCurrencyOptions()
-displayedFeaturedGames();
+getAndDisplayFeaturedGames();

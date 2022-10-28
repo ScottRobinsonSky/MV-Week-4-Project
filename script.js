@@ -8,32 +8,37 @@ submitBtn.addEventListener("click", processSearchQuery);
 input.addEventListener("keyup", findSearchSuggestions)
 
 let steamAppList = {}
+let loadedSuggestions = []
+let loadedCount = 0
 async function findSearchSuggestions(e) {
+    loadedSuggestions = []
     const q = input.value.trim().toLowerCase()
     const suggestions = steamAppList.applist.apps.filter(item => item.name.toLowerCase().includes(q))
-    // Clear old suggestions
-    clearSearchSuggestions()
-    const LIMIT = 6
+    const LIMIT = 5
     // Do nothing if there are no suggestions
     if (suggestions.length == 0) return
 
     // Limit array length to 6
-    //suggestions.length = Math.min(suggestions.length, 6)
+    suggestions.length = Math.min(suggestions.length, LIMIT)
     // TODO: Prioritise exact matches
     // TODO: Prioritise apps over dlc
     // Apps/Games have ids ending in 0
     // DLC have ids ending in 1 - 9
     // Insert into document
         const savedQuery = q
+        clearSearchSuggestions()
         setTimeout(async () => {
             // Abort if user is still typing
             if (input.value.trim().toLowerCase() !== savedQuery) return
 
             // Get data from server
-            const loadedSuggestions = []
+
+            // Clear old suggestions
+            
             // Go through each suggestion until we have limit
             suggestions.forEach(async (item) => {
-                if (loadedSuggestions.length >= LIMIT) return
+                if (loadedCount >= LIMIT) return
+                console.log(loadedCount)
                 // Check if duplicate
                 if (loadedSuggestions.includes(item.appid)) return
                 const appData = await getGameData(item.appid)
@@ -43,7 +48,9 @@ async function findSearchSuggestions(e) {
                     // DO nothing
                     return 
                 }
-                console.log(appData)
+                loadedSuggestions.push(item.appid)
+                loadedCount += 1
+                //console.log(appData)
             
 
                 // Add elements
@@ -62,7 +69,8 @@ async function findSearchSuggestions(e) {
                 p.innerText += ` ${fullAppData.price_overview.final_formatted}`
                 img.src = fullAppData.header_image
                 searchResultsSection.appendChild(div)
-                loadedSuggestions.push(item.appid)
+
+                
             })
             
             // How long after the user has typed should we get the data?
@@ -74,6 +82,7 @@ async function findSearchSuggestions(e) {
 }
 
 function clearSearchSuggestions() {
+    
     searchResultsSection.innerHTML = ''
 }
 function processSearchQuery(e) {

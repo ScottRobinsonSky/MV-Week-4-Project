@@ -70,6 +70,7 @@ main {
   box-shadow: 3px 0 12px 6px var(--black) inset;
 }
 footer {
+  
   width: 100%;
 }
 /* || SECONDARY ELEMENT */
@@ -109,6 +110,9 @@ margin: 2% 0;
 margin: 2% 1%;
 width: 98%;
 }
+#info-display{
+
+}
 
 /* || CLASS */
 .flex-center {
@@ -133,6 +137,10 @@ form{
 }
 .price{
   font-size: var(--price-font-size);
+}
+
+#btnSvg {
+  width: 1vw;
 }
 
 /* || GRIDS*/
@@ -193,26 +201,29 @@ form{
 /* || ELEMENTS */
 #data-general {
   grid-area: g;
-  
+
 }
 #data-general p{
   margin: 0;
 
 }
-#data-requirements {
+#data-requirements-container {
   grid-area: r;
 }
-#data-art {
+#data-art-container {
   grid-area: a;
 }
-#data-description {
+#data-description-container {
   grid-area: d;
 }
-#data-score {
+#data-score-container {
   grid-area: c;
   font-size: var(--score-font-size);
   margin: 0;
   padding: 0;
+}
+#data-score-container h3 {
+  font-size: calc(var(--score-font-size) * .2)
 }
 
 /* || PRICE CLASSES */

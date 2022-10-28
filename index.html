@@ -14,6 +14,9 @@
       <h1>Steam Search</h1>
     </header>
     <main>
+      <button id="returnBtn" class="hidden" onclick="toggleDisplayedSection()">
+        <img id="btnSvg" src="SVG/back-svgrepo-com-white.svg" alt="Go Back"/>
+      </button>
       <section id="on-load" class="flex-center flex-column">
         <form action="" onsubmit="processSearchQuery(); return false">
           <label for="steamSearchQuery"></label>
@@ -25,9 +28,7 @@
             class="form-item"
           />
           <label for="steamCurrencySelect"></label>
-          <select id="steamCurrencySelect" name="steamCurrencySelect">
-
-          </select>
+          <select name="steamCurrencySelect" id="steamCurrencySelect" ></select>
           <button type="submit" id="submitSearchQuery" class="form-item">Search</button>
         </form>
         <div id="error-container"></div>
@@ -45,7 +46,7 @@
             <h3>Description:</h3>
           </article>
           <article id="data-score-container">
-            <h4>Score:</h4>
+            <h3>Score:</h3>
           </article>
         </article>
       </section>

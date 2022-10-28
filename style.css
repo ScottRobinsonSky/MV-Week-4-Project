@@ -30,7 +30,8 @@
     /* FONT SIZE */
   --h1-font-size: calc(48px + 0.390625vw);
   --h2-font-size: calc(36px + 0.390625vw);
-  --main-feat-price-font-size: calc(20px + 1.090625vw);
+  --main-feat-font-size: 3.8vw;
+  --price-font-size: 2.9vw;
   --feat-o-price-font-size: 1.45vw;
   --feat-d-price-font-size: 1.5vw;
   --feat-discount-font-size: 2.55vw;
@@ -51,7 +52,7 @@ html {
 /* || PRIMARY ELEMENT */
 body {
   width: 96%;
-  background-image: radial-gradient(var(--navy-blue), var(--black));
+  background-image: radial-gradient(var(--navy-blue), var(--dark-blue), var(--black));
   display: flex;
   flex-direction: column;
   margin: 2%;
@@ -78,23 +79,23 @@ h1 {
   color: var(--white);
 }
 h2 {
-  font-family: "Unica One", system-ui, Times, serif;
+  font-family: "Unica One", Times, serif;
   font-size: var(--h2-font-size);
 }
 h3 {
-  font-family: "Unica One", system-ui, Times, serif;
+  font-family: "Unica One", Times, serif;
 }
 h4 {
-  font-family: "Gruppo";
+  font-family: "Gruppo", Arial, Helvetica, sans-serif;
   margin: 1%;
 }
 p {
 }
 form {
-  margin: 3%;
+  margin: 1%;
 }
 section {
-  margin: 0;
+  margin: 3% 0 3% 0;
 }
 article {
   margin: 0;
@@ -117,6 +118,9 @@ article {
   display: none;
 }
 .description {
+}
+.price{
+  font-size: var(--price-font-size);
 }
 
 /* || GRIDS*/
@@ -145,7 +149,7 @@ article {
 #main-featured-game {
   grid-column: 2 / 4;
   grid-row: 1 / 3;
-  font-size: var(--main-feat-price-font-size);
+  font-size: var(--main-feat-font-size);
   margin: .75%;
 }
 #main-featured-game img {
@@ -202,8 +206,6 @@ article {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Audiowide", Impact, Times, serif;
-  font-size: var(--feat-discount-font-size);
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -211,9 +213,10 @@ article {
   background-color: var(--dark-green);
   box-shadow: 3px 0 5px 2px var(--black) inset;
   border-radius: 3px 0 0 3px;
+  font-family: "Audiowide", Impact, Times, serif;
+  font-size: var(--feat-discount-font-size);  
   padding: 5%;
   color: var(--green); 
-
 }
 .original-price {
   grid-area: 1 / 2 / 2 / 2;
@@ -247,7 +250,7 @@ article {
   background-color: var(--dark-grey);
   box-shadow: 0 0 7px 3px var(--black) inset;
   border-radius: 4px;
-  padding: 2%;
+  padding: 2.5%;
   margin: 1% 1% 3% 1%;
 }
 

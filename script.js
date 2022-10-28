@@ -5,6 +5,9 @@ const currencySelect = document.querySelector('#steamCurrencySelect')
 
 submitBtn.addEventListener("click", processSearchQuery);
 
+window.addEventListener("unhandledrejection", function() { 
+    displayError("Something went wrong. Make sure your localhost CORS server is running.");
+});
 
 function processSearchQuery(e) {
     e.preventDefault(); // to prevent page from refreshing when input submitted
@@ -36,7 +39,7 @@ async function searchByName(wantedName) {
         }
     });
     if (matching_ids.length === 0) {
-        displayError("Couldn't find a game with that name");
+        displayError("Couldn't find a game with that name.");
         return;
     }
     displayError() // this search is valid, so remove any displayed error
@@ -213,10 +216,13 @@ function displayError(errorMessage) {
         if (errorMessage === undefined) return;
     }
     // Display new error message
+    const errorContainer = document.getElementById("error-container");
+    
     const p = document.createElement("p");
     p.classList.add("error");
     p.innerText = errorMessage;
-    body.append(p);
+    
+    errorContainer.append(p);
 }
 
 function generateGeneralData(data) {

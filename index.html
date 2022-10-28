@@ -13,7 +13,10 @@
     <header>
       <h1>Steam Search</h1>
     </header>
-    <main>
+    <main class="flex-center flex-column">
+      <button id="returnBtn" class="hidden" onclick="toggleDisplayedSection()">
+        <img id="btnSvg" src="SVG/back-svgrepo-com-white.svg" alt="Go Back"/>
+      </button>
       <section id="on-load" class="flex-center flex-column">
         <form action="" class="flex-center flex-column">
           <label for="steamSearchQuery"></label>

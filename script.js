@@ -335,6 +335,7 @@ function displayGameData(gameData, gameId) {
     generateScore(data);
     
     toggleDisplayedSection();
+    document.getElementById("returnBtn").classList.remove("hidden");
 }
 
 function addCurrencyOptions() {

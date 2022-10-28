@@ -2,10 +2,19 @@ const body = document.querySelector("body");
 const input = document.getElementById("steamSearchQuery");
 const submitBtn = document.getElementById("submitSearchQuery");
 const currencySelect = document.querySelector('#steamCurrencySelect')
+const searchResultsSection = document.querySelector('#steamSearchResults')
 
 submitBtn.addEventListener("click", processSearchQuery);
+input.addEventListener("keyup", findSearchSuggestions)
 
-
+let steamAppList = {}
+async function findSearchSuggestions(e) {
+    const query = input.value.trim().toLowerCase()
+    const suggestions = steamAppList.applist.apps.filter(item => item.name.toLowerCase().startsWith(query))
+    // TODO: Prioritise exact matches over 'startsWith'
+    // TODO: Prioritise lower appids
+    console.log(suggestions)
+}
 function processSearchQuery(e) {
     e.preventDefault(); // to prevent page from refreshing when input submitted
 
@@ -23,11 +32,11 @@ function processSearchQuery(e) {
 }
 
 async function searchByName(wantedName) {
-    const response = await fetch("http://localhost:8080/https://api.steampowered.com/ISteamApps/GetAppList/v0002/");
-    const data = await response.json();
+    // const response = await fetch("http://localhost:8080/https://api.steampowered.com/ISteamApps/GetAppList/v0002/");
+    // const data = await response.json();
 
     const matching_ids = [];
-    Object.values(data.applist.apps).forEach((obj) => {
+    Object.values(steamAppList.applist.apps).forEach((obj) => {
         const id = obj.appid;
         const name = obj.name;
 
@@ -88,9 +97,9 @@ function reformatFeaturedGames(featuredGames) {
     return uniqueGames;
 }
 async function searchById(queryId) {
-    const response = await fetch("http://localhost:8080/http://api.steampowered.com/ISteamApps/GetAppList/v0002/");
-    const data = await response.json();
-    const matchingApp = data.applist.apps.find(item => item.appid.toString() === queryId)
+    // const response = await fetch("http://localhost:8080/http://api.steampowered.com/ISteamApps/GetAppList/v0002/");
+    // const data = await response.json();
+    const matchingApp = steamAppList.applist.apps.find(item => item.appid.toString() === queryId)
     if (matchingApp === undefined) {
         // There is an error: no apps match this app id
         displayError("Couldn't find a game with that app id");
@@ -356,5 +365,13 @@ function getSelectedCountry() {
     console.log(selectedOption)
     return selectedOption
 }
+
+async function getSteamAppList() {
+    const response = await fetch("http://localhost:8080/http://api.steampowered.com/ISteamApps/GetAppList/v0002/");
+    const data = await response.json();
+    steamAppList = data
+    return
+}
 addCurrencyOptions()
+getSteamAppList()
 getAndDisplayFeaturedGames();

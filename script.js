@@ -33,7 +33,7 @@ async function findSearchSuggestions(e) {
             const loadedSuggestions = []
             // Go through each suggestion until we have limit
             suggestions.forEach(async (item) => {
-                if (loadedSuggestions >= LIMIT) return
+                if (loadedSuggestions.length >= LIMIT) return
                 // Check if duplicate
                 if (loadedSuggestions.includes(item.appid)) return
                 const appData = await getGameData(item.appid)

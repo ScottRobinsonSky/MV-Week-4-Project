@@ -305,10 +305,16 @@ function generateDescription(data) {
 function generateScore(data) {
     const dataContainer = document.getElementById("game-data-container");
 
-    const score = document.createElement("a");
-    score.innerText = data.metacritic.score;
-    score.href = data.metacritic.url;
-    score.target = "_blank";
+    let score;
+    if (data.metacritic) {
+        score = document.createElement("a");
+        score.innerText = data.metacritic.score;
+        score.href = data.metacritic.url;
+        score.target = "_blank";
+    } else {
+        score = document.createElement("p");
+        score.innerText = "N/A";
+    }
     score.classList.add("score");
 
     dataContainer.append(score);

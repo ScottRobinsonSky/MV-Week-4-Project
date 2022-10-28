@@ -111,6 +111,7 @@ article {
   margin: 0;
 }
 
+
 /* || MAIN ID */
 #on-load {
   margin: 2% 0;
@@ -119,7 +120,9 @@ article {
   margin: 2% 1%;
   width: 98%;
 }
-#info-display {
+
+input, select {
+  text-align: center;
 }
 
 /* || CLASS */
@@ -208,6 +211,19 @@ select {
   margin: 5% 5% 2% 5%;
   border-radius: 2px;
   box-shadow: 0 2px 3px 2px var(--black);
+}
+
+#btnSvg {
+  width: 3vw;
+}
+
+#returnBtn {
+  align-self: flex-start;
+  background-color: transparent;
+  border: none;
+  color: whitesmoke;
+  margin-left: 2%;
+  margin-top: 2%;
 }
 
 /* || GAME DATA GRID */

@@ -5,9 +5,11 @@ const currencySelect = document.querySelector("#steamCurrencySelect");
 
 // submitBtn.addEventListener("click", processSearchQuery);
 
-function processSearchQuery() {
-  // e.preventDefault(); // to prevent page from refreshing when input submitted
+window.addEventListener("unhandledrejection", function() { 
+    displayError("Something went wrong. Make sure your localhost CORS server is running.");
+});
 
+function processSearchQuery() {
   query = input.value.trim();
   if (!query) return false;
 
@@ -22,18 +24,21 @@ function processSearchQuery() {
 }
 
 async function searchByName(wantedName) {
-  const response = await fetch(
-    "http://localhost:8080/https://api.steampowered.com/ISteamApps/GetAppList/v0002/"
-  );
-  const data = await response.json();
+    const response = await fetch("http://localhost:8080/https://api.steampowered.com/ISteamApps/GetAppList/v0002/");
+    const data = await response.json();
 
-  const matching_ids = [];
-  Object.values(data.applist.apps).forEach((obj) => {
-    const id = obj.appid;
-    const name = obj.name;
+    const matching_ids = [];
+    Object.values(data.applist.apps).forEach((obj) => {
+        const id = obj.appid;
+        const name = obj.name;
 
-    if (name.toLowerCase() === wantedName) {
-      matching_ids.push(id);
+        if (name.toLowerCase() === wantedName) {
+            matching_ids.push(id);
+        }
+    });
+    if (matching_ids.length === 0) {
+        displayError("Couldn't find a game with that name.");
+        return;
     }
   });
   if (matching_ids.length === 0) {
@@ -249,14 +254,23 @@ function displayError(errorMessage) {
     if (prevDisplayedError.innerText === errorMessage) {
       return; // optimisation so we don't make redundant p elements
     }
-    prevDisplayedError.remove();
-    if (errorMessage === undefined) return;
-  }
-  // Display new error message
-  const p = document.createElement("p");
-  p.classList.add("error");
-  p.innerText = errorMessage;
-  body.append(p);
+
+    // Display new error message
+    const errorContainer = document.getElementById("error-container");
+    
+    const p = document.createElement("p");
+    p.classList.add("error");
+    p.innerText = errorMessage;
+    
+    errorContainer.append(p);
+}
+
+function toggleDisplayedSection() {
+    const featuredGamesSection = document.getElementById("on-load");
+    featuredGamesSection.classList.toggle("hidden");
+
+    const singleGameSection = document.getElementById("info-display");
+    singleGameSection.classList.toggle("hidden");
 }
 
 function generateGeneralData(data) {
@@ -352,35 +366,37 @@ function generateDescription(data) {
 }
 
 function generateScore(data) {
-  const scoreContainer = document.getElementById("data-score-container");
-
-  const score = document.createElement("a");
-  score.id = "data-score";
-  score.innerText = data.metacritic.score;
-  score.href = data.metacritic.url;
-  score.target = "_blank";
-  score.classList.add("score");
+    const scoreContainer = document.getElementById("data-score-container");
+    let score;
+    if (data.metacritic) {
+        score = document.createElement("a");
+        score.innerText = data.metacritic.score;
+        score.href = data.metacritic.url;
+        score.target = "_blank";
+    } else {
+        score = document.createElement("p");
+        score.innerText = "N/A";
+    }
+    score.id = "data-score";
+    score.classList.add("score");
 
   scoreContainer.append(score);
 }
 
 function displayGameData(gameData, gameId) {
-  console.log(gameData);
-  const data = gameData[`${gameId}`]["data"];
+    console.log(gameData);
+    const data = gameData[`${gameId}`]['data']
 
-  // Remove any other errors
-  displayError();
+    // Remove any other errors
+    displayError()
 
-  generateGeneralData(data);
-  generateArt(data);
-  generateDescription(data);
-  generateScore(data);
-
-  const featuredGamesSection = document.getElementById("on-load");
-  featuredGamesSection.classList.add("hidden");
-
-  const singleGameSection = document.getElementById("info-display");
-  singleGameSection.classList.remove("hidden");
+    generateGeneralData(data);
+    generateArt(data);
+    generateDescription(data);
+    generateScore(data);
+    
+    toggleDisplayedSection();
+    document.getElementById("returnBtn").classList.remove("hidden");
 }
 
 function addCurrencyOptions() {

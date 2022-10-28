@@ -14,7 +14,7 @@
       <h1>Steam Search</h1>
     </header>
     <main class="flex-center flex-column">
-      <button id="returnBtn" onclick="toggleDisplayedSection()">
+      <button id="returnBtn" class="hidden" onclick="toggleDisplayedSection()">
         <img id="btnSvg" src="SVG/back-svgrepo-com-white.svg" alt="Go Back"/>
       </button>
       <section id="on-load" class="flex-center flex-column">
@@ -27,9 +27,10 @@
             placeholder="Enter game title"
             class="form-item"
           />
+
           <label for="steamCurrencySelect"></label>
-          <select name="steamCurrencySelect" id="steamCurrencySelect" >
-            
+          <select onmousedown="this.size='8'" oninput="this.size='0'" id="steamCurrencySelect" name="steamCurrencySelect">
+
           </select>
           <button type="submit" id="submitSearchQuery" class="form-item">Search</button>
         </form>

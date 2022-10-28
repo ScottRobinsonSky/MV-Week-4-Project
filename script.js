@@ -5,12 +5,8 @@ const currencySelect = document.querySelector('#steamCurrencySelect')
 
 submitBtn.addEventListener("click", processSearchQuery);
 
-window.addEventListener("unhandledrejection", function(promiseRejectionEvent) { 
-    if (promiseRejectionEvent.reason.message === 'Failed to fetch') {
-        displayError("Failed to connect to the API. Make sure your localhost CORS server is running.");
-        return;
-    }
-    console.log(`An unexpector promise error occured: ${promiseRejectionEvent.reason.message}`);
+window.addEventListener("unhandledrejection", function() { 
+    displayError("Something went wrong. Make sure your localhost CORS server is running.");
 });
 
 function processSearchQuery(e) {

@@ -225,6 +225,14 @@ function displayError(errorMessage) {
     errorContainer.append(p);
 }
 
+function toggleDisplayedSection() {
+    const featuredGamesSection = document.getElementById("on-load");
+    featuredGamesSection.classList.toggle("hidden");
+
+    const singleGameSection = document.getElementById("info-display");
+    singleGameSection.classList.toggle("hidden");
+}
+
 function generateGeneralData(data) {
     const generalContainer = document.getElementById("data-general");
     
@@ -326,11 +334,7 @@ function displayGameData(gameData, gameId) {
     generateDescription(data);
     generateScore(data);
     
-    const featuredGamesSection = document.getElementById("on-load");
-    featuredGamesSection.classList.add("hidden");
-
-    const singleGameSection = document.getElementById("info-display");
-    singleGameSection.classList.remove("hidden");
+    toggleDisplayedSection();
 }
 
 function addCurrencyOptions() {

@@ -9,11 +9,72 @@ input.addEventListener("keyup", findSearchSuggestions)
 
 let steamAppList = {}
 async function findSearchSuggestions(e) {
-    const query = input.value.trim().toLowerCase()
-    const suggestions = steamAppList.applist.apps.filter(item => item.name.toLowerCase().startsWith(query))
-    // TODO: Prioritise exact matches over 'startsWith'
-    // TODO: Prioritise lower appids
-    console.log(suggestions)
+    const q = input.value.trim().toLowerCase()
+    const suggestions = steamAppList.applist.apps.filter(item => item.name.toLowerCase().includes(q))
+    // Clear old suggestions
+    clearSearchSuggestions()
+    const LIMIT = 6
+    // Do nothing if there are no suggestions
+    if (suggestions.length == 0) return
+
+    // Limit array length to 6
+    //suggestions.length = Math.min(suggestions.length, 6)
+    // TODO: Prioritise exact matches
+    // TODO: Prioritise apps over dlc
+    // Apps/Games have ids ending in 0
+    // DLC have ids ending in 1 - 9
+    // Insert into document
+        const savedQuery = q
+        setTimeout(async () => {
+            // Abort if user is still typing
+            if (input.value.trim().toLowerCase() !== savedQuery) return
+
+            // Get data from server
+            const loadedSuggestions = []
+            // Go through each suggestion until we have limit
+            suggestions.forEach(async (item) => {
+                if (loadedSuggestions >= LIMIT) return
+                // Check if duplicate
+                if (loadedSuggestions.includes(item.appid)) return
+                const appData = await getGameData(item.appid)
+                
+                if(appData[`${item.appid}`] == undefined || appData[`${item.appid}`].success === false) {
+                    // THis means it couldn't get the game data
+                    // DO nothing
+                    return 
+                }
+                console.log(appData)
+            
+
+                // Add elements
+                const p = document.createElement('p')
+                const img = document.createElement('img')
+                const div = document.createElement('div')
+                p.innerText = item.name
+                // Make it so user can click on it
+                p.addEventListener('click', () => searchById(item.appid.toString()))
+                img.width = '292'
+                img.height = '136'
+                div.appendChild(img)
+                div.appendChild(p)
+
+                const fullAppData = appData[`${item.appid}`].data
+                p.innerText += ` ${fullAppData.price_overview.final_formatted}`
+                img.src = fullAppData.header_image
+                searchResultsSection.appendChild(div)
+                loadedSuggestions.push(item.appid)
+            })
+            
+            
+        }, 600)
+
+    
+    
+
+}
+
+function clearSearchSuggestions() {
+    searchResultsSection.innerHTML = ''
 }
 function processSearchQuery(e) {
     e.preventDefault(); // to prevent page from refreshing when input submitted
@@ -149,6 +210,8 @@ async function getAndDisplayFeaturedGames() {
 
 function displayFeaturedGames(reformattedData, isMain) {
     for (let gameId of Object.keys(reformattedData)) {
+        // Clear search suggestions
+        clearSearchSuggestions()
         gameData = reformattedData[gameId];
 
         const featureContainer = document.getElementById("featured-games-container");

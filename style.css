@@ -101,6 +101,10 @@ article {
   margin: 0;
 }
 
+input, select {
+  text-align: center;
+}
+
 /* || CLASS */
 .flex-center {
   display: flex;

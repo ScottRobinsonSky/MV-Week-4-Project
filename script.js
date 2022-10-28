@@ -3,22 +3,23 @@ const input = document.getElementById("steamSearchQuery");
 const submitBtn = document.getElementById("submitSearchQuery");
 const currencySelect = document.querySelector('#steamCurrencySelect')
 
-submitBtn.addEventListener("click", processSearchQuery);
+// submitBtn.addEventListener("click", processSearchQuery);
 
 
-function processSearchQuery(e) {
-    e.preventDefault(); // to prevent page from refreshing when input submitted
+function processSearchQuery() {
+    // e.preventDefault(); // to prevent page from refreshing when input submitted
 
     query = input.value.trim();
-    if (!query) return;
+    if (!query) return false;
 
     if (!isNaN(+query)) {
         // `query` is a valid number, which we take to mean user is trying to search by id.
         searchById(query)
-        return;
+        return false;
     }
 
     data = searchByName(query.toLowerCase());
+    return false
 
 }
 

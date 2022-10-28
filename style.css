@@ -119,6 +119,9 @@ width: 98%;
 .flex-column {
   flex-direction: column;
 }
+form{
+  
+}
 .form-item {
   margin: 3% auto;
 }

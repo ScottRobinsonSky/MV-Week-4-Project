@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="data.js" defer></script>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style/featured-games.css" />
+    <link rel="stylesheet" href="./style/game-data.css" />
+    <link rel="stylesheet" href="./style/main-style.css" />
     <title>Steam API Search</title>
   </head>
   <body>
@@ -14,11 +16,11 @@
       <h1>Steam Search</h1>
     </header>
     <main class="flex-center flex-column">
-      <button id="returnBtn" class="hidden" onclick="toggleDisplayedSection()">
+      <button type="button" id="returnBtn" class="hidden" onclick="toggleDisplayedSection()">
         <img id="btnSvg" src="SVG/back-svgrepo-com-white.svg" alt="Go Back"/>
       </button>
-      <section id="on-load" class="flex-center flex-column">
-        <form action="" onsubmit="processSearchQuery(); return false">
+      <section id="on-load">
+        <form id="searchForm" action="" onsubmit="processSearchQuery(); return false">
           <label for="steamSearchQuery"></label>
           <input
             type="text"

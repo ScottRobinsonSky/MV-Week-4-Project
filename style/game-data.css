@@ -1,0 +1,138 @@
+/* || FONTS */
+@import url("https://fonts.googleapis.com/css?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Unica+One&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Gruppo&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+:root {
+  /* COLOURS */
+  --black: #090e1d;
+  --dark-blue: #0b173b;
+  --dark-grey: #373747;
+  --navy-blue: #1d2c4e;
+  --light-blue: #3396ba;
+  --dark-green: #255825;
+  --green: #81dd5a;
+  --light-grey: #b4bac4;
+  --white: #e3ebee;
+  /* FONT SIZE */
+  --h1-font-size: calc(48px + 0.390625vw);
+  --h2-font-size: calc(36px + 0.390625vw);
+  --main-feat-font-size: 3.8vw;
+  --price-font-size: 2.9vw;
+  --feat-o-price-font-size: 1.45vw;
+  --feat-d-price-font-size: 1.5vw;
+  --feat-discount-font-size: 2.55vw;
+  --score-font-size: 10vw;
+  /* GRID SIZE */
+  --price-template-row: 2.5vw 2.5vw;
+  --price-template-column: 9vw 6vw;
+  --data-template-column: repeat(6, 4vw);
+  --data-template-row: 10vh, 10vh;
+  /* OTHER */
+  --drop-shadow: 0 1px 5px 1px var(--black);
+  --depth: 0 0 5px 2px var(--black) inset;
+}
+
+
+/* || GAME DATA GRID */
+#game-data-container {
+  display: grid;
+  grid-template-columns: var(--data-template-columns);
+  grid-template-columns: var(--data-template-rows);
+  grid-template-areas:
+    "g g . . a a a a"
+    "d d . c . r r r"
+    "d d . . . r r r";
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  margin: 5%;
+  grid-row-gap: 1%;
+  grid-column-gap: 5%;
+}
+/* || GAME DATA ELEMENTS */
+/* || DATA GENERAL GRID */
+#data-general {
+  grid-area: g;
+  display: grid;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  grid-template-areas:
+    ". t"
+    ". r"
+    ". d"
+    ". b"
+    ". w"
+    "p p";
+  background-image: radial-gradient(var(--dark-blue), var(--black));
+  border-radius: 3px;
+  box-shadow: var(--drop-shadow);
+  padding: 2%;
+  margin: 0;
+}
+/* || DATA GENERAL ELEMENTS */
+#data-general h4 {
+  grid-area: t;
+  font-size: 3vw;
+  margin: 2%;
+}
+#data-general .price-container {
+  grid-area: p;
+  box-shadow: none;
+  justify-content: center;
+}
+.release-date {
+  grid-area: r;
+}
+.game-developers {
+  grid-area: d;
+}
+.game-publishers {
+  grid-area: b;
+}
+.game-website {
+  grid-area: w;
+}
+#data-general p {
+  margin: .5%;
+}
+/* || GAME DATA ELEMENTS CONT */
+
+#data-requirements-container {
+  grid-area: r;
+}
+#data-art-container {
+  grid-area: a;
+  margin: 0;
+}
+#data-art {
+  border-radius: 3px;
+  box-shadow: var(--drop-shadow);
+}
+#data-description-container {
+  grid-area: d;
+  background-image: radial-gradient(var(--dark-blue), var(--black));
+  border-radius: 3px;
+  box-shadow: var(--drop-shadow);
+  padding: 2%;
+  margin: 0;
+}
+#data-score-container {
+  grid-area: c;
+  font-size: var(--score-font-size);
+  background-image: radial-gradient(var(--dark-blue), var(--black));
+  border-radius: 3px;
+  box-shadow: var(--drop-shadow);
+  padding: 2%;
+  margin: 0;;
+}
+#data-score-container h3 {
+  font-size: calc(var(--score-font-size) * 0.2);
+}
+.flex-grid{
+  align-self: start;
+
+}

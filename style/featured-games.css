@@ -1,9 +1,3 @@
-/* || FONTS */
-@import url("https://fonts.googleapis.com/css?family=Audiowide&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Unica+One&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Gruppo&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-
 :root {
   /* COLOURS */
   --black: #090e1d;
@@ -16,29 +10,23 @@
   --light-grey: #b4bac4;
   --white: #e3ebee;
   /* FONT SIZE */
-  --h1-font-size: calc(48px + 0.390625vw);
-  --h2-font-size: calc(36px + 0.390625vw);
   --main-feat-font-size: 3.8vw;
   --price-font-size: 2.9vw;
   --feat-o-price-font-size: 1.45vw;
   --feat-d-price-font-size: 1.5vw;
   --feat-discount-font-size: 2.55vw;
-  --score-font-size: 10vw;
   /* GRID SIZE */
   --price-template-row: 2.5vw 2.5vw;
   --price-template-column: 9vw 6vw;
-  --data-template-column: repeat(6, 4vw);
-  --data-template-row: 10vh, 10vh;
   /* OTHER */
   --drop-shadow: 0 1px 5px 1px var(--black);
   --depth: 0 0 5px 2px var(--black) inset;
 }
-
 /* || FEATURED GAMES GRID */
 /* || CONTAINER */
 #featured-games-container {
-  width: 98%;
-  margin: auto;
+  width: 96%;
+  margin: 2%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 17vw;
@@ -58,7 +46,7 @@
 #main-featured-game {
   grid-column: 2 / 4;
   grid-row: 1 / 3;
-  margin: 0.75%;
+  margin: 1.5%;
 }
 #main-featured-game img {
   width: 95%;
@@ -66,11 +54,8 @@
   border-radius: 2px;
   box-shadow: 0 2px 3px 2px var(--black);
 }
-#main-featured-game p {
-  font-size: calc(var(--price-font-size) * 1.2);
-}
 .featured-game {
-  margin: 1.5%;
+  margin: 3%;
 }
 .featured-game img {
   width: 90%;

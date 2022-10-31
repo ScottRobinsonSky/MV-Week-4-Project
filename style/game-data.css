@@ -1,9 +1,3 @@
-/* || FONTS */
-@import url("https://fonts.googleapis.com/css?family=Audiowide&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Unica+One&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Gruppo&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-
 :root {
   /* COLOURS */
   --black: #090e1d;
@@ -16,19 +10,13 @@
   --light-grey: #b4bac4;
   --white: #e3ebee;
   /* FONT SIZE */
-  --h1-font-size: calc(48px + 0.390625vw);
-  --h2-font-size: calc(36px + 0.390625vw);
-  --main-feat-font-size: 3.8vw;
-  --price-font-size: 2.9vw;
-  --feat-o-price-font-size: 1.45vw;
-  --feat-d-price-font-size: 1.5vw;
-  --feat-discount-font-size: 2.55vw;
-  --score-font-size: 10vw;
+  --o-price-font-size: 1.8vw;
+  --d-price-font-size: 2.5vw;
+  --discount-font-size: 3.4vw;
+  --score-font-size: 8vw;
   /* GRID SIZE */
-  --price-template-row: 2.5vw 2.5vw;
-  --price-template-column: 9vw 6vw;
-  --data-template-column: repeat(6, 4vw);
-  --data-template-row: 10vh, 10vh;
+  /* --data-template-column: repeat(6, 1fr);
+  --data-template-row: 1fr 1fr 1fr; */
   /* OTHER */
   --drop-shadow: 0 1px 5px 1px var(--black);
   --depth: 0 0 5px 2px var(--black) inset;
@@ -38,77 +26,107 @@
 /* || GAME DATA GRID */
 #game-data-container {
   display: grid;
-  grid-template-columns: var(--data-template-columns);
-  grid-template-columns: var(--data-template-rows);
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
-    "g g . . a a a a"
-    "d d . c . r r r"
-    "d d . . . r r r";
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  justify-items: center;
-  margin: 5%;
-  grid-row-gap: 1%;
-  grid-column-gap: 5%;
+    "g g g a a a"
+    "d d d c r r"
+    "d d d c r r";
+    row-gap: 3%;
+    column-gap: 1%;
+  place-items: stretch;
+  height: 70vh;
+  margin: 1% 3% 2%;
 }
 /* || GAME DATA ELEMENTS */
+.box{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
 /* || DATA GENERAL GRID */
 #data-general {
   grid-area: g;
   display: grid;
   align-items: center;
   align-content: center;
-  justify-content: space-evenly;
   grid-template-areas:
-    ". t"
-    ". r"
-    ". d"
-    ". b"
-    ". w"
-    "p p";
+    ". . t ."
+    ". p r ."
+    ". p d ."
+    ". p b ."
+    ". p w ."
+    ". . . .";
   background-image: radial-gradient(var(--dark-blue), var(--black));
   border-radius: 3px;
   box-shadow: var(--drop-shadow);
-  padding: 2%;
-  margin: 0;
 }
 /* || DATA GENERAL ELEMENTS */
-#data-general h4 {
-  grid-area: t;
-  font-size: 3vw;
-  margin: 2%;
-}
-#data-general .price-container {
-  grid-area: p;
-  box-shadow: none;
-  justify-content: center;
-}
-.release-date {
-  grid-area: r;
-}
-.game-developers {
-  grid-area: d;
-}
-.game-publishers {
-  grid-area: b;
-}
-.game-website {
-  grid-area: w;
-}
-#data-general p {
-  margin: .5%;
-}
+  #data-general h4 {
+    grid-area: t;
+    font-size: 3vw;
+    margin: 1%;
+    width: 100%;
+  }
+    #data-general .price-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      place-self: stretch;
+      grid-area: p;
+      box-shadow: none;
+      width: 98%;
+      margin: 1%;
+    }
+    #data-general .discount-percent {
+      font-size: var(--discount-font-size);
+      border-radius: 3px;
+      box-shadow: none;
+      margin: 0;
+    }
+    #data-general .original-price {
+      font-size: var(--o-price-font-size);
+      border-radius: 3px;
+      box-shadow: none;
+      margin: 0;
+    }
+    #data-general .discount-price {
+      font-size: var(--d-price-font-size);
+      border-radius: 3px;
+      box-shadow: none;
+      margin: 0;
+    }
+  .release-date {
+    grid-area: r;
+  }
+  .game-developers {
+    grid-area: d;
+  }
+  .game-publishers {
+    grid-area: b;
+  }
+  .game-website {
+    grid-area: w;
+  }
+  #data-general p {
+    margin: .5%;
+  }
 /* || GAME DATA ELEMENTS CONT */
-
 #data-requirements-container {
   grid-area: r;
 }
 #data-art-container {
+  display: flex;
+  place-content: center;
   grid-area: a;
-  margin: 0;
+  background-image: radial-gradient(var(--dark-blue), var(--black));
+  border-radius: 3px;
+  box-shadow: var(--drop-shadow);
 }
 #data-art {
+  place-self: center;
+  width: 96%;
   border-radius: 3px;
   box-shadow: var(--drop-shadow);
 }
@@ -118,7 +136,6 @@
   border-radius: 3px;
   box-shadow: var(--drop-shadow);
   padding: 2%;
-  margin: 0;
 }
 #data-score-container {
   grid-area: c;
@@ -126,13 +143,9 @@
   background-image: radial-gradient(var(--dark-blue), var(--black));
   border-radius: 3px;
   box-shadow: var(--drop-shadow);
-  padding: 2%;
-  margin: 0;;
 }
 #data-score-container h3 {
   font-size: calc(var(--score-font-size) * 0.2);
 }
-.flex-grid{
-  align-self: start;
-
+#data-score-container a{
 }

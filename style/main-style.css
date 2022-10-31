@@ -16,22 +16,12 @@
   --light-grey: #b4bac4;
   --white: #e3ebee;
   /* FONT SIZE */
-  --h1-font-size: calc(48px + 0.390625vw);
-  --h2-font-size: calc(36px + 0.390625vw);
-  --main-feat-font-size: 3.8vw;
-  --price-font-size: 2.9vw;
-  --feat-o-price-font-size: 1.45vw;
-  --feat-d-price-font-size: 1.5vw;
-  --feat-discount-font-size: 2.55vw;
-  --score-font-size: 10vw;
-  /* GRID SIZE */
-  --price-template-row: 2.5vw 2.5vw;
-  --price-template-column: 9vw 6vw;
-  --data-template-column: repeat(6, 4vw);
-  --data-template-row: 10vh, 10vh;
+  --h1-font-size: 7vw;
+  --h2-font-size: 5vw;
+  --form-font-size: 1.8vw;
   /* OTHER */
   --drop-shadow: 0 1px 5px 1px var(--black);
-  --depth: 0 0 5px 2px var(--black) inset;
+  --depth: .5px 2px 2px var(--light-grey) inset, 0 0 5px 2px var(--black) inset;
 }
 html {
   text-align: center;
@@ -48,8 +38,6 @@ body {
     var(--dark-blue),
     var(--black)
   );
-  display: flex;
-  flex-direction: column;
   margin: 2%;
 }
 header {
@@ -74,7 +62,7 @@ footer {
 h1 {
   font-family: "Audiowide", Impact, Times, serif;
   font-size: var(--h1-font-size);
-  margin: 2% auto;
+  margin: .5% auto;
   color: var(--white);
 }
 h2 {
@@ -93,20 +81,18 @@ p {
 form {
   margin: 1%;
 }
-section {
-}
 article {
   margin: 0;
 }
 
-
 /* || MAIN ID */
 #on-load {
-  margin: 2% 0;
+  width: 100%;
 }
 #featured-games {
-  margin: 2% 1%;
-  width: 98%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 input, select {
@@ -151,9 +137,63 @@ select {
   background-color: transparent;
   border: none;
   align-self: flex-start;
-  margin: 2%;
+  margin: 2% 2% 1% 2%;
 }
 
+/* || FORM GRID */
+#searchForm{
+  width: 80%;
+  margin: 2% 10%;
+  display: grid;
+  grid-template-areas: 
+  "b b b c"
+  ". s . .";
+  place-content: space-evenly;
+  place-items: center;
+  
+}
+#steamSearchQuery{
+  grid-area: b;
+  width: 65vw;
+  height: 5vw;
+  margin: 1%;
+  box-sizing: border-box;
+  place-self: center;
+  background-color: var(--light-grey);
+  box-shadow: var(--depth), var(--drop-shadow);
+  color: var(--black);
+  font-size: var(--form-font-size);
+  border: none;
+  border-radius: 3px;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+#steamCurrencySelect{
+  grid-area: c;
+  width: 8vw;
+  height: 5vw;
+  margin: 1%;
+  box-sizing: border-box;
+  place-self: center;
+  background-color: var(--light-grey);
+  box-shadow: var(--depth), var(--drop-shadow);
+  font-size: calc(var(--form-font-size) * .8);
+  border: none;
+  border-radius: 3px;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+#submitSearchQuery{
+  grid-area: s;
+  width: 15vw;
+  height: 4vw;
+  box-sizing: border-box;
+  place-self: center;
+  background-color: var(--light-grey);
+  box-shadow: var(--drop-shadow), var(--depth);
+  font-size: var(--form-font-size);
+  border: none;
+  border-radius: 3px;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
 
 /* || PRICE CLASSES */
 .price-container {
@@ -212,7 +252,7 @@ select {
   background-color: var(--dark-grey);
   box-shadow: 0 0 7px 3px var(--black) inset;
   border-radius: 4px;
-  padding: 2.5%;
+  padding: 1.5% 5%;
   margin: 1% 1% 3% 1%;
 }
 .main-feature-title {
